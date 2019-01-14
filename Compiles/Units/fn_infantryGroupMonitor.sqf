@@ -42,7 +42,7 @@ for "_i" from 0 to (count GMSAI_infantryGroups) do
 					{
 						//diag_log format["[GMSAI] _infantryGroupMonitor: deleting group %1 at time %2",_group,diag_tickTime];
 						deleteMarker _groupMarker;
-						[_group] call GMSAI_despawnInfantryGroup;
+						[_group] call GMS_fnc_despawnInfantryGroup;
 						if !(_player isEqualTo "") then
 						{
 							_player setVariable["GMSAI_dynamicRespawnAt",_respawnTime + diag_tickTime];

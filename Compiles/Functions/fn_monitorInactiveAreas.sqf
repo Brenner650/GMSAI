@@ -24,18 +24,29 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 						_area params["_areaDescriptor","_staticAiDescriptor","_spawnType","_spawnedGroups","_respawnAt","_timesSpawned"];	
 						_area set[5, (_timesSpawned + 1)];			
 						_staticAiDescriptor params["_noGroupsToSpawn","_unitsPerGroup","_difficulty","_chance"];				
-						private _spawns = [_areaDescriptor,[_noGroupsToSpawn] call GMSAI_getNumberFromRange,_players] call GMSAI_findRandomPosWithinArea;
+						private _spawns = [_areaDescriptor,[_noGroupsToSpawn] call GMS_fnc_getNumberFromRange,_players] call GMS_fnc_findRandomPosWithinArea;
 						//diag_log format["[GMSAI] _Activating spawns at %1 in area %2",_spawns,_area];
 						if !(_spawns isEqualTo []) then
 						{
 							{
 								private _groupSpawnPos = _x;
-								private _group = [_groupSpawnPos,[_unitsPerGroup] call GMSAI_getNumberFromRange,300] call GMSAI_spawnInfantryGroup;	
+								private _group = [_groupSpawnPos,[_unitsPerGroup] call GMS_fnc_getNumberFromRange,300] call GMS_fnc_spawnInfantryGroup;	
+								private _unitDifficulty = selectRandomWeighted _difficulty;								
+								//diag_log format["_monitorInactiveAreas: _difficulty = %1 | _unitDifficulty = %2",_difficulty,_unitDifficulty];
+								//diag_log format["_monitorInactiveAreas: _area = %1",_area];
+								[_group,GMSAI_unitDifficulty select (_unitDifficulty)] call GMS_fnc_setupGroupSkills;
+								//  params["_group","_gear",["_launchersPerGroup",[]],["_useNVG",false],["_blacklistedItems",[]]];
+
+								[_group, GMSAI_unitLoadouts select _unitDifficulty, GMSAI_staticLaunchersPerGroup, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
+								//  params["_group",["_garrison",false],["_scuba",false],["_swimdepth",0]];
+								[_group] call GMS_fnc_setupGroupBehavior;
+								// params["_group","_skillLevel","_money"];
+								[_group,_unitDifficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 								_group setVariable["GMSAI_groupParameters",_staticAiDescriptor];
 								_group setVariable["GMSAI_despawnDistance",GMSAI_staticDespawnDistance];
 								_group setVariable["GMSAI_DespawnTime",GMSAI_staticDespawnTime];
 								_group setVariable["GMSAI_patrolArea",[_groupSpawnPos,150,150]];
-								diag_log format["[GMSAI] _monitorInactiveAreas: _group = %1",_group];
+								//diag_log format["[GMSAI] _monitorInactiveAreas: _group = %1",_group];
 								private _m = "";
 								if (GMSAI_debug > 1) then
 								{

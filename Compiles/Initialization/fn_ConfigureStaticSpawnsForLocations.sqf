@@ -39,13 +39,14 @@ _fn_setupLocationType = {
 		//diag_log format["village location %1 being evaluated",text _x];
 		_marker = [_x,GMSAI_markerIndex,_markerColor] call _fn_createMarker;
 		GMSAI_markerIndex = GMSAI_markerIndex + 1;
-		[_marker,_aiDescriptor] call GMSAI_addStaticAISpawn;
+		[_marker,_aiDescriptor] call GMSAI_fnc_addStaticSpawn;
 		_configuredAreas pushBack _marker;
 	} forEach nearestLocations [getArray (configFile >> "CfgWorlds" >> worldName >> "centerPosition"), [_locationType], worldSize];	
 	//diag_log format["[GMSAI] _fn_setupLocationType: %1 locations found searcing for %2",count _configuredAreas,_locationType];
 	//diag_log format["_fn_setupLocationType: _configuredAreas = %1",_configuredAreas];
 	_configuredAreas	
 };
+
 private _villages = ["NameVillage",GMSAI_staticVillageSettings,"COLORCIVILIAN"] call _fn_setupLocationType;
 private _cites = ["NameCity",GMSAI_staticCitySettings,"COLORKHAKI"] call _fn_setupLocationType;
 private _capitals = ["NameCityCapital",GMSAI_staticCapitalSettings,"COLORGREY"] call _fn_setupLocationType;

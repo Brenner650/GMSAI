@@ -8,9 +8,9 @@ while {true} do
     if (diag_tickTime > _5sec) then
     {
         _5sec = diag_tickTime + 5;
-        call GMSAI_monitorInactiveAreas;
-        call GMSAI_monitorActiveAreas;
-        call GMSAI_dynamicAIManager;
-        call GMSAI_infantryGroupMonitor;
+        call GMSAI_fnc_monitorInactiveAreas;
+        call GMSAI_fnc_monitorActiveAreas;
+        call GMSAI_fnc_dynamicAIManager;
+        call GMSAI_fnc_infantryGroupMonitor;
     };
 };

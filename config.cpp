@@ -15,7 +15,7 @@ class CfgPatches {
 		units[] = {};
 		weapons[] = {};
 		requiredVersion = 0.1;
-		requiredAddons[] = {};
+		requiredAddons[] = {"GMSCore"};
 	};
 };
 
@@ -23,12 +23,26 @@ class CfgFunctions {
 	class GMSAI {
 		class main {
 			file = "addons\GMSAI\init";
-			class preInit {
-				preInit = 1;
-			};
-			class postInit {
+			class initialize {
 				postInit = 1;
 			};
+		};
+		class Units {
+			file = "addons\GMSAI\Compiles\Units";
+			class infantryGroupMonitor {};
+		};
+		class Initialization {
+			file = "addons\GMSAI\Compiles\Initialization";
+			class ConfigureStaticSpawnsForLocations {};
+			class ConfigureRandomSpawnLocations {};
+		};
+		class Functions {
+			file = "addons\GMSAI\Compiles\Functions";
+			class addStaticSpawn {};
+			class dynamicAIManager {};
+			class mainThread {};
+			class monitorActiveAreas {};
+			class monitorInactiveAreas {};
 		};
 	};
 };
