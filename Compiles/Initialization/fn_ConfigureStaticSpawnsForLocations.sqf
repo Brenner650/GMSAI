@@ -55,8 +55,5 @@ private _other = ["NameLocal",GMSAI_staticOtherSettings,"COLORYELLOW"] call _fn_
 private _airport = ["Aiirport",GMSAI_staticOtherSettings,"COLORGREEN"] call _fn_setupLocationType;
 
 GMSAI_markerIndes = nil;
-
-diag_log "[GMSAI] Static Patrols at Fixed Locations Initialized";
-
 private _return = _villages + _cites + _capitals + _marine + _other + _airport;
 _return

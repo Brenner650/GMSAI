@@ -22,30 +22,35 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 					if (random(1) < ((_area select 1) select 3)) then
 					{
 						_area params["_areaDescriptor","_staticAiDescriptor","_spawnType","_spawnedGroups","_respawnAt","_timesSpawned"];	
-						_area set[5, (_timesSpawned + 1)];			
-						_staticAiDescriptor params["_noGroupsToSpawn","_unitsPerGroup","_difficulty","_chance"];				
-						private _spawns = [_areaDescriptor,[_noGroupsToSpawn] call GMS_fnc_getNumberFromRange,_players] call GMS_fnc_findRandomPosWithinArea;
+						_staticAiDescriptor params["_noGroupsToSpawn","_unitsPerGroup","_difficulty","_chance"];	
+						//private _groupsToSpawn = [_noGroupsToSpawn] call GMS_fnc_getIntegerFromRange;
+						//diag_log format["_monitorInactiveAreas:  _groupsToSpawn = %1",_groupsToSpawn];
+						_area set[5, (_timesSpawned + 1)];	
+						//diag_log format["_monitorInactiveAreas: _area = %1",_area];						
+						//diag_log format["_monitorInactiveAreas: _unitsPerGroup = %1 | _staticAiDescriptor = %2",_unitsPerGroup,  _staticAiDescriptor];			
+						private _spawns = [_areaDescriptor,[_noGroupsToSpawn] call GMS_fnc_getIntegerFromRange,_players] call GMS_fnc_findRandomPosWithinArea;
 						//diag_log format["[GMSAI] _Activating spawns at %1 in area %2",_spawns,_area];
 						if !(_spawns isEqualTo []) then
 						{
 							{
 								private _groupSpawnPos = _x;
-								private _group = [_groupSpawnPos,[_unitsPerGroup] call GMS_fnc_getNumberFromRange,300] call GMS_fnc_spawnInfantryGroup;	
+								private _group = [_groupSpawnPos,[_unitsPerGroup] call GMS_fnc_getIntegerFromRange,300] call GMS_fnc_spawnInfantryGroup;	
 								private _unitDifficulty = selectRandomWeighted _difficulty;								
 								//diag_log format["_monitorInactiveAreas: _difficulty = %1 | _unitDifficulty = %2",_difficulty,_unitDifficulty];
 								//diag_log format["_monitorInactiveAreas: _area = %1",_area];
 								[_group,GMSAI_unitDifficulty select (_unitDifficulty)] call GMS_fnc_setupGroupSkills;
-								//  params["_group","_gear",["_launchersPerGroup",[]],["_useNVG",false],["_blacklistedItems",[]]];
-
 								[_group, GMSAI_unitLoadouts select _unitDifficulty, GMSAI_staticLaunchersPerGroup, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
-								//  params["_group",["_garrison",false],["_scuba",false],["_swimdepth",0]];
 								[_group] call GMS_fnc_setupGroupBehavior;
-								// params["_group","_skillLevel","_money"];
 								[_group,_unitDifficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 								_group setVariable["GMSAI_groupParameters",_staticAiDescriptor];
 								_group setVariable["GMSAI_despawnDistance",GMSAI_staticDespawnDistance];
 								_group setVariable["GMSAI_DespawnTime",GMSAI_staticDespawnTime];
-								_group setVariable["GMSAI_patrolArea",[_groupSpawnPos,150,150]];
+								_group setVariable["GMSAI_patrolArea",_areaDescriptor];
+								_group setVariable["GMSAI_waypointSpeed","NORMAL"];
+								_group setVariable["GMSAI_waypointLoiterRadius",30];
+								_group setVariable["GMSAI_blacklistedAreas",["water"]];
+								//diag_log format["_monitorInactiveAreas: initializing waypoints for _group = %1",_group];
+								_group call GMSAI_fnc_initializeWaypoint;
 								//diag_log format["[GMSAI] _monitorInactiveAreas: _group = %1",_group];
 								private _m = "";
 								if (GMSAI_debug > 1) then
@@ -55,7 +60,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 									_m setMarkerColor "COLORRED";
 									_m setMarkerPos _groupSpawnPos;
 									_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
-									diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
+									//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
 								};
 								GMSAI_infantryGroups pushBack [_group,_m,"",GMSAI_staticRespawnTime];
 							} forEach _spawns;

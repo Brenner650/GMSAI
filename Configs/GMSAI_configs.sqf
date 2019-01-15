@@ -20,7 +20,7 @@
 *********************************/
 //GMSAI_StaticSpawnAtLocations = false;
 //GMSAI_StaticSpawnsGrid = true;  // does nothing at present
-GMSAI_StaticSpawnsRandom = 10;  // Determins the number of random spans independent of cites, town, military areas, ports, airports and other:  default 25
+GMSAI_StaticSpawnsRandom = 0;  // Determins the number of random spans independent of cites, town, military areas, ports, airports and other:  default 25
 GMSAI_useStaticSpawns = true;
 GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns.
 GMSAI_staticRespawnTime = 60;
@@ -28,7 +28,7 @@ GMSAI_staticDespawnTime = 30;
 GMSAI_staticLaunchersPerGroup = 1; // set to -1 to disable
 // 
 //GMSAI_DynamicSpawns = false;
-GMSAI_dynamicRespawns = -1;  //  Set to 0 to disable, or -1 to have infinite respawns.
+GMSAI_dynamicRespawns = 0;  //  Set to 0 to disable, or -1 to have infinite respawns.
 GMSAI_dynamicRespawnTime = 30;
 GMSAI_dynamicDespawnTime = 10;
 GMSAI_dynamicUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
@@ -183,6 +183,6 @@ GMSAI_staticCapitalSettings = [GMSAI_staticCapitalGroups,GMSAI_staticCapitalUnit
 GMSAI_staticMarineSettings = [GMSAI_staticMarineGroups,GMSAI_staticMarineUnitsPerGroup,GMSAI_staticMarineUnitsDifficulty,GMSAI_ChanceStaticMarineUnits];
 GMSAI_staticOtherSettings = [GMSAI_staticOtherGroups,GMSAI_staticOtherUnitsPerGroup,GMSAI_staticOtherUnitsDifficulty,GMSAI_ChanceStaticOtherGroups];
 GMSAI_staticRandomSettings = [GMSAI_staticRandomGroups,GMSAI_staticRandomUnits,GMSAI_staticRandomUnitsDifficulty,GMSAI_staticRandomChance];
-GMSAI_dynamicSettings = [GMSAI_dynamicRandomGroups,GMSAI_dynamicRandomUnits,GMSAI_dynamicRandomDifficulty,GMSAI_dynamicRandomChance];
+GMSAI_dynamicSettings = [GMSAI_dynamicRandomGroups,GMSAI_dynamicRandomUnits,GMSAI_dynamicUnitsDifficulty,GMSAI_dynamicRandomChance];
 
 

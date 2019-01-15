@@ -53,7 +53,7 @@ for "_i" from 0 to (count GMSAI_infantryGroups) do
 						if (GMSAI_debug > 1) then
 						{
 							_groupMarker setMarkerPos (position _leader);
-							_groupMarker setMarkerText format["%1 / %2 units",_group,count units _group];
+							_groupMarker setMarkerText format["%1:%2 units",_group,count units _group];
 						};
 					};
 				} else {

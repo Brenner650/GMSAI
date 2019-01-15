@@ -18,4 +18,4 @@ GMSAI_infantryGroups = [];
 GMSAI_unitType = "I_G_Sharpshooter_F";
 GMSAI_infantry = 1;
 GMSAI_debug = 2;
-diag_log "[GMSAI] Variables loaded";
+//diag_log "[GMSAI] Variables loaded";

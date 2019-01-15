@@ -30,6 +30,8 @@ class CfgFunctions {
 		class Units {
 			file = "addons\GMSAI\Compiles\Units";
 			class infantryGroupMonitor {};
+			class nextWaypoint {};
+			class initializeWaypoint {};
 		};
 		class Initialization {
 			file = "addons\GMSAI\Compiles\Initialization";

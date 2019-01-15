@@ -2,7 +2,7 @@
 	ensure that dynamic AI are spawned and registered with the group MONITOR
 	update timers as needed.
 */
-#define GMSAI_dynamicSpawnDistance 250
+#define GMSAI_dynamicSpawnDistance 200
 #define GMSAI_dynamicDespawnDistance 400
 //#define GMSAI_dynamicRespawnTime 600
 //#define GMSAI_dynamicDespawnTime 120
@@ -10,7 +10,6 @@
 //diag_log format["[GMSAI] running DYNAMIC AI MONITOR at %1 | count allPlayer = %2",diag_tickTime, count allPlayers];
 //if (true) exitWith {};
 {
-
 	private _player = _x;	
 	private _respawns = _player getVariable "GMSAI_dynamicAIRespawns";
 	if (isNil "_respawns") then
@@ -43,19 +42,23 @@
 					{
 						private _spawnPos = (getPosATL _player) getPos[GMSAI_dynamicSpawnDistance,random(359)];	
 						//diag_log format[" _dynamicAIManger: spawnPosition = %1",_spawnPos];	
-						private _units = [GMSAI_dynamicRandomUnits] call GMS_fnc_getNumberFromRange;
+						private _units = [GMSAI_dynamicRandomUnits] call GMS_fnc_getIntergerFromRange;
 						private _group = [_spawnPos,_units,GMSAI_alertAIDistance] call GMS_fnc_spawnInfantryGroup;	
 						private _unitDifficulty = selectRandomWeighted GMSAI_dynamicUnitsDifficulty;
 						[_group,GMSAI_unitDifficulty select (_unitDifficulty)] call GMS_fnc_setupGroupSkills;
 						[_group, GMSAI_unitLoadouts select _unitDifficulty, GMSAI_staticLaunchersPerGroup, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
 						[_group,_unitDifficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
-						[_group] call GMS_fnc_setupGroupBehavior;											
+						[_group] call GMS_fnc_setupGroupBehavior;	
 						_group setVariable["GMSAI_groupParameters",GMSAI_dynamicSettings];
 						_group setVariable["GMSAI_despawnDistance",GMSAI_dynamicDespawnDistance];
 						_group setVariable["GMSAI_DespawnTime",GMSAI_dynamicDespawnTime];
 						//_group setVariable["GMSAI_respawnTime",GMSAI_dynamicRespawnTime];
-						_group setVariable["GMSAI_patrolArea",[_spawnPos,150]];
+						_group setVariable["GMSAI_patrolArea",[_spawnPos,150,150]];
+						_group setVariable["GMSAI_waypointSpeed","NORMAL];
+						_group setVariable["GMSAI_waypointLoiterRadius",30];	
+						_group setVariable["GMSAI_blacklistedAreas",["water"]];											
 						diag_log format["[GMSAI] _dynamicAIManger: _group = %1",_group];
+						_group call GMSAI_fnc_initializeWaypointInfantry;							
 						_player setVariable["GMSAI_playerGroup",_group];
 						private _m = "";
 						if (GMSAI_debug > 1) then
@@ -65,17 +68,14 @@
 							_m setMarkerColor "COLORRED";
 							_m setMarkerPos _spawnPos;
 							_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
-							diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
+							//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
 						};
 						GMSAI_infantryGroups pushBack [_group,_m,_player,GMSAI_dynamicRespawnTime];
 					};
 				} else {
 					_player setVariable["GMSAI_dynamicRespawnAt",diag_tickTime + (GMSAI_dynamicDespawnTime/2)];
-				};
-				
-			};
-			
+				};	
+			};	
 		};
-		
 	};
 } forEach allPlayers;

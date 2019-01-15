@@ -24,4 +24,3 @@ for "_i" from 1 to GMSAI_StaticSpawnsRandom do
 		_blacklistedAreas pushBack _m;
 	};
 };
-diag_log "[GMSAI] random spawns defined";
