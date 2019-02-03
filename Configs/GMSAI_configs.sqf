@@ -14,21 +14,60 @@
 #define GMSAI_difficultyGreen 2
 #define GMSAI_difficultyOrange 3
 
-
 /*********************************
-	Static Spawn Configs
+	 Patrol Spawn Configs
 *********************************/
+
+GMSAI_releaseVehiclesToPlayers = 1;  // set to -1 to disable this feature.
+GMSAI_blacklistedAreas = [[[0,0,0],100]];  //  add these as [position, radius]
+GMSAI_checkClassNames = true; // when true, class names listed in the configs will be checked against CfgVehicles, CfgWeapons, ets.
+GMSAI_useCfgPricingForLoadouts = false;
+GMSAI_maxPricePerItem = 1000;
+GMSAI_blacklistedGear = [];
+/*********************************
+	Aircraft Patrol Spawn Configs
+*********************************/
+GMSAI_numberOfAircraftPatrols = 5;
+GMSAI_aircraftPatrolDifficulty =  [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
+GMSAI_respawnTimeAircraftPatrol = [600,900];
+GMSAI_oddsParatroops = 0.5;
+GMSAI_numberParatroops = [2,4]; // can be a single value (1, [1]) or a range
+GMSAI_paratroopRespawnTimer = 900;
+GMSAI_gunners = 3;
+GMSAI_airpatrolResapwns = -1;
+// treat aircraft types as weighted arrayIntersect
+GMSAI_aircraftTypes = [
+		"B_Heli_Transport_01_F",5,
+		"B_Heli_Light_01_F",1,
+		"I_Heli_light_03_unarmed_F",5,
+		"B_Heli_Transport_03_unarmed_green_F",5,
+		"I_Heli_light_03_F",1,
+		"I_Plane_Fighter_03_AA_F",1,
+		"O_Heli_Light_02_F",2,
+		//"Exile_Chopper_Huey_Armed_Green",1,
+		"B_Heli_Attack_01_F",2,
+		"B_Heli_Transport_03_unarmed_F",5
+];
+/*********************************
+	Static Infantry Spawn Configs
+*********************************/
+GMSAI_LaunchersPerGroup = 1; // set to -1 to disable
+GMSAI_launcherCleanup = true;
+GMSAI_useNVG = true;
+GMSAI_removeNVG = false;
+GMSAI_runoverProtection = true;
+
 //GMSAI_StaticSpawnAtLocations = false;
 //GMSAI_StaticSpawnsGrid = true;  // does nothing at present
-GMSAI_StaticSpawnsRandom = 0;  // Determins the number of random spans independent of cites, town, military areas, ports, airports and other:  default 25
 GMSAI_useStaticSpawns = true;
 GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns.
-GMSAI_staticRespawnTime = 60;
-GMSAI_staticDespawnTime = 30;
-GMSAI_staticLaunchersPerGroup = 1; // set to -1 to disable
+GMSAI_staticRespawnTime = 600;
+GMSAI_staticDespawnTime = 120;
+GMSAI_StaticSpawnsRandom = 15;  // Determines the number of random spans independent of cites, town, military areas, ports, airports and other:  default 25
+
 // 
-//GMSAI_DynamicSpawns = false;
-GMSAI_dynamicRespawns = 0;  //  Set to 0 to disable, or -1 to have infinite respawns.
+GMSAI_useDynamicSpawns = true;
+GMSAI_dynamicRespawns = -1;  //  Set to 0 to disable, or -1 to have infinite respawns.
 GMSAI_dynamicRespawnTime = 30;
 GMSAI_dynamicDespawnTime = 10;
 GMSAI_dynamicUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
@@ -124,8 +163,6 @@ GMSAI_skillOrange = [
 	0.70 // general, affects decision making
 ];
 
-GMSAI_blacklistedGear = [];
-GMSAI_useConfigsBasedGearConfiguration = false;
 /******************************************************************************************************************************************************* */
 if (toLower(GMS_modType) isEqualTo "epoch") then {call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_unitLoadoutEpoch.sqf"};
 if (toLower(GMS_modType) isEqualTo "exile") then {call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_unitLoadoutExile.sqf"};

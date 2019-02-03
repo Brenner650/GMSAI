@@ -9,7 +9,10 @@
 
 	http://creativecommons.org/licenses/by-nc-sa/4.0/	
 */
-
+class GMSAAI_Build {
+	build = 0.1;
+	buildDate = "2-2-19";
+};
 class CfgPatches {
 	class GMSAI {
 		units[] = {};
@@ -18,7 +21,6 @@ class CfgPatches {
 		requiredAddons[] = {"GMSCore"};
 	};
 };
-
 class CfgFunctions {
 	class GMSAI {
 		class main {
@@ -27,11 +29,30 @@ class CfgFunctions {
 				postInit = 1;
 			};
 		};
+		class Players {
+			file = "addons\GMSAI\Compiles\Players";
+			class rewardPlayer {};
+		};
 		class Units {
 			file = "addons\GMSAI\Compiles\Units";
 			class infantryGroupMonitor {};
 			class nextWaypoint {};
-			class initializeWaypoint {};
+			class initializeWaypointInfantry {};
+			class EH_MPInfantryKilled {};
+			class EH_MPInfantryHit {};
+			class processInfantryKilled {};
+			class processInfantryHit {};
+			class monitorInfantryGroups {};
+			class addEventHandlersInfantry {};
+		};
+		class Vehicles {
+			file = "addons\GMSAI\Compiles\Vehicles";
+			class monitorAirPatrols {};
+			class spawnHelicoptorPatrol {};
+			class initializeAircraftPatrols {};
+			class nextWaypointAircraft {};
+			class EH_crewKilled {};
+			class processAircraftCrewKilled {};
 		};
 		class Initialization {
 			file = "addons\GMSAI\Compiles\Initialization";
@@ -45,6 +66,7 @@ class CfgFunctions {
 			class mainThread {};
 			class monitorActiveAreas {};
 			class monitorInactiveAreas {};
+			//class checkClassnames {};
 		};
 	};
 };

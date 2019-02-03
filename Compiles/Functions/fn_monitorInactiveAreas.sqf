@@ -34,12 +34,14 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 						{
 							{
 								private _groupSpawnPos = _x;
+								//  params["_groupPos","_units","_alertDistance"];
 								private _group = [_groupSpawnPos,[_unitsPerGroup] call GMS_fnc_getIntegerFromRange,300] call GMS_fnc_spawnInfantryGroup;	
 								private _unitDifficulty = selectRandomWeighted _difficulty;								
 								//diag_log format["_monitorInactiveAreas: _difficulty = %1 | _unitDifficulty = %2",_difficulty,_unitDifficulty];
 								//diag_log format["_monitorInactiveAreas: _area = %1",_area];
 								[_group,GMSAI_unitDifficulty select (_unitDifficulty)] call GMS_fnc_setupGroupSkills;
-								[_group, GMSAI_unitLoadouts select _unitDifficulty, GMSAI_staticLaunchersPerGroup, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
+								//  params["_group","_gear",["_launchersPerGroup",1],["_useNVG",false]];
+								[_group, GMSAI_unitLoadouts select _unitDifficulty, GMSAI_LaunchersPerGroup, GMSAI_useNVG] call GMS_fnc_setupGroupGear;
 								[_group] call GMS_fnc_setupGroupBehavior;
 								[_group,_unitDifficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 								_group setVariable["GMSAI_groupParameters",_staticAiDescriptor];
@@ -50,7 +52,8 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 								_group setVariable["GMSAI_waypointLoiterRadius",30];
 								_group setVariable["GMSAI_blacklistedAreas",["water"]];
 								//diag_log format["_monitorInactiveAreas: initializing waypoints for _group = %1",_group];
-								_group call GMSAI_fnc_initializeWaypoint;
+								_group call GMSAI_fnc_initializeWaypointInfantry;
+								[_group] call GMS_fnc_addEventHandlersInfantry;
 								//diag_log format["[GMSAI] _monitorInactiveAreas: _group = %1",_group];
 								private _m = "";
 								if (GMSAI_debug > 1) then
@@ -63,7 +66,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 									//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
 								};
 								GMSAI_infantryGroups pushBack [_group,_m,"",GMSAI_staticRespawnTime];
-							} forEach _spawns;
+							} count _spawns;
 						GMSAI_activeStaticSpawns pushBack  [_area,diag_tickTime];							
 						} else {
 

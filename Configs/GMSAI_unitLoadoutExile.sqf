@@ -45,7 +45,46 @@ _partsTools = [
 ];
 _items[_drinks + _food + _medicalItems + _partsToolsMeds];
 // available launchers include: ["launch_NLAW_F","launch_RPG32_F","launch_B_Titan_F","launch_I_Titan_F","launch_O_Titan_F","launch_B_Titan_short_F","launch_I_Titan_short_F","launch_O_Titan_short_F"];
-GMSAI_launchers ["launch_RPG32_F"];;
+_launchers ["launch_RPG32_F"];
+
+if (GMSAI_useCfgPricingForLoadouts) then
+{
+	_CfgBaseLoadout = [GMSAI_maxPricePerItem,GMSAI_blacklistedGear] call GMS_fnc_dynamicConfigs;
+	_primary = _CfgBaseLoadout select 0;
+	_handguns = _CfgBaseLoadout select 1;
+	_throwableExplosives = _CfgBaseLoadout select 2;
+	_headgear = _CfgBaseLoadout select 3;
+	_uniforms = _CfgBaseLoadout select 4;
+	_vests = _CfgBaseLoadout select 5;
+	_backpacks = _CfgBaseLoadout select 6;
+	_items = _CfgBaseLoadout select 7;
+	_launchers = _CfgBaseLoadout select 8;
+	_nvg = _CfgBaseLoadout select 9;
+} else {
+	private _CfgBaseLoadout = [[
+		_primary, 		//[]  primary weapons
+		_handguns, 		// [] secondary weapons
+		_throwableExplosives,  // [] throwables
+		_headgear, 		//[] headgear
+		_uniforms, 		// [] uniformItems
+		_vests, 		//[] vests
+		_backpacks, 	//[] backpacks
+		_items, 		// [] items and equipment
+		_launchers, 	// launchers
+		_nvg
+	]] call GMS_fnc_checkClassnames;
+	_primary = _CfgBaseLoadout select 0;
+	_handguns = _CfgBaseLoadout select 1;
+	_throwableExplosives = _CfgBaseLoadout select 2;
+	_headgear = _CfgBaseLoadout select 3;
+	_uniforms = _CfgBaseLoadout select 4;
+	_vests = _CfgBaseLoadout select 5;
+	_backpacks = _CfgBaseLoadout select 6;
+	_items = _CfgBaseLoadout select 7;
+	_launchers = _CfgBaseLoadout select 8;
+	_nvg = _CfgBaseLoadout select 9;
+	diag_log "[GMSAI] classnames checked and invalid names excluded";
+};
 GMSAI_gearBlue = [
 	_primary, //[]  primary weapons
 	_handguns, // [] secondary weapons
@@ -55,7 +94,7 @@ GMSAI_gearBlue = [
 	_vests, //[] vests
 	_backpacks, //[] backpacks
 	_items, // [] items and equipment
-	GMSAI_launchers, // launchers
+	_launchers, // launchers
 	_nvg
 ];
 GMSAI_gearRed = GMSAI_gearBlue;

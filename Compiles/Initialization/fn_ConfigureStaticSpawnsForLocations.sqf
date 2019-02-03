@@ -52,7 +52,7 @@ private _cites = ["NameCity",GMSAI_staticCitySettings,"COLORKHAKI"] call _fn_set
 private _capitals = ["NameCityCapital",GMSAI_staticCapitalSettings,"COLORGREY"] call _fn_setupLocationType;
 private _marine = ["NameMarine",GMSAI_staticMarineSettings,"COLORBLUE"] call _fn_setupLocationType;
 private _other = ["NameLocal",GMSAI_staticOtherSettings,"COLORYELLOW"] call _fn_setupLocationType;
-private _airport = ["Aiirport",GMSAI_staticOtherSettings,"COLORGREEN"] call _fn_setupLocationType;
+private _airport = ["Airport",GMSAI_staticOtherSettings,"COLORGREEN"] call _fn_setupLocationType;
 
 GMSAI_markerIndes = nil;
 private _return = _villages + _cites + _capitals + _marine + _other + _airport;
