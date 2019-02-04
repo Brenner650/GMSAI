@@ -70,7 +70,7 @@ if (GMSAI_useDynamicSpawns) then
 							
 							//diag_log format["[GMSAI] _dynamicAIManger: _group = %1",_group];
 							_group call GMSAI_fnc_initializeWaypointInfantry;
-							[_group,[["MPKilled","GMSAI_fnc_EH_MPKilled"],["MPHit","GMSAI_fnc_EH_MPHit"]]] call GMS_fnc_addMPEventHandlers;				
+							[_group] call GMSAI_fnc_addEventHandlersInfantry;			
 							_player setVariable["GMSAI_playerGroup",_group];
 							private _m = "";
 							
@@ -92,5 +92,5 @@ if (GMSAI_useDynamicSpawns) then
 			};
 			
 		};
-	} count allPlayers;
+	} forEach allPlayers;
 };

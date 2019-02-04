@@ -210,10 +210,10 @@ if (GMSAI_useCfgPricingForLoadouts) then
 	GMSAI_gearRed = GMSAI_gearBlue;
 	GMSAI_gearGreen = GMSAI_gearBlue;
 	GMSAI_gearOrange = GMSAI_gearBlue;	
-	{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearBlue select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearBlue;
-	{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearRed select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearRed;
-	{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearGreen select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearGreen;		
-	{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearOrange select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearOrange;	
+	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearBlue select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearBlue;
+	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearRed select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearRed;
+	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearGreen select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearGreen;		
+	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearOrange select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearOrange;	
 	diag_log "[GMSAI] CfgPricing-based loadouts used";
 } else {
 	{

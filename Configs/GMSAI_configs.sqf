@@ -15,13 +15,18 @@
 #define GMSAI_difficultyOrange 3
 
 /*********************************
+	 Messaging to Clients
+*********************************/
+GMSAI_useKillMessages = true;
+GMSAI_useKilledAIName = true; // when true, the name of the unit killed will be included in the kill message.
+/*********************************
 	 Patrol Spawn Configs
 *********************************/
 
 GMSAI_releaseVehiclesToPlayers = 1;  // set to -1 to disable this feature.
 GMSAI_blacklistedAreas = [[[0,0,0],100]];  //  add these as [position, radius]
 GMSAI_checkClassNames = true; // when true, class names listed in the configs will be checked against CfgVehicles, CfgWeapons, ets.
-GMSAI_useCfgPricingForLoadouts = false;
+GMSAI_useCfgPricingForLoadouts = true;
 GMSAI_maxPricePerItem = 1000;
 GMSAI_blacklistedGear = [];
 /*********************************
@@ -56,6 +61,7 @@ GMSAI_launcherCleanup = true;
 GMSAI_useNVG = true;
 GMSAI_removeNVG = false;
 GMSAI_runoverProtection = true;
+gmsai_bodycleanuptimer = 20;
 
 //GMSAI_StaticSpawnAtLocations = false;
 //GMSAI_StaticSpawnsGrid = true;  // does nothing at present

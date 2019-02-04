@@ -53,7 +53,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 								_group setVariable["GMSAI_blacklistedAreas",["water"]];
 								//diag_log format["_monitorInactiveAreas: initializing waypoints for _group = %1",_group];
 								_group call GMSAI_fnc_initializeWaypointInfantry;
-								[_group] call GMS_fnc_addEventHandlersInfantry;
+								[_group] call GMSAI_fnc_addEventHandlersInfantry;
 								//diag_log format["[GMSAI] _monitorInactiveAreas: _group = %1",_group];
 								private _m = "";
 								if (GMSAI_debug > 1) then
