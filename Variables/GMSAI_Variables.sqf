@@ -17,6 +17,7 @@ GMSAI_groupDebugMarkers = [];
 GMSAI_infantryGroups = [];
 GMSAI_airPatrols = [];
 GMSAI_deadAI = [];
+GMSAI_emptyVehicles = [];
 GMSAI_unitType = "I_G_Sharpshooter_F";
 GMSAI_infantry = 1;
 GMSAI_debug = 2;

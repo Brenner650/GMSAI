@@ -38,11 +38,14 @@ class CfgFunctions {
 			class infantryGroupMonitor {};
 			class nextWaypoint {};
 			class initializeWaypointInfantry {};
-			class EH_MPInfantryKilled {};
-			class EH_MPInfantryHit {};
-			class processInfantryKilled {};
+			class EH_InfantryKilled {};
+			class EH_InfantryHit {};
+			class EH_infantryReloaded {};
+			class processInfantryKill {};
+			class processUnitKill {};
 			class processInfantryHit {};
 			class monitorInfantryGroups {};
+			class monitorDeadUnits {};
 			class addEventHandlersInfantry {};
 		};
 		class Vehicles {
@@ -51,8 +54,15 @@ class CfgFunctions {
 			class spawnHelicoptorPatrol {};
 			class initializeAircraftPatrols {};
 			class nextWaypointAircraft {};
-			class EH_crewKilled {};
-			class processAircraftCrewKilled {};
+			class EH_crewHitHeli {};
+			class EH_crewKilledHeli {};
+			class EH_crewGetOut {};
+			class monitorEmptyVehicles {};
+			class processAircraftCrewHit {};
+			class processAircraftCrewKill {};
+			class processVehicleCrewKill {};
+			class processCrewGetoutEvent {};
+			class processEmptyVehicle {};
 		};
 		class Initialization {
 			file = "addons\GMSAI\Compiles\Initialization";
@@ -70,3 +80,4 @@ class CfgFunctions {
 		};
 	};
 };
+//#include "$PBOPREFIX$\addons\GMSAI\Configs\config.cpp"

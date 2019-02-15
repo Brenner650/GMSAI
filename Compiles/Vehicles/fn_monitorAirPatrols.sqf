@@ -20,14 +20,9 @@ for "_i" from 1 to (count GMSAI_airPatrols) do
 			} else {
 				if ({alive _x} count (crew _aircraft) isEqualTo 0) then
 				{
-					_airPatrol set[4,diag_tickTime + [GMSAI_respawnTimeAircraftPatrol] call GMS_fnc_getNumberFromRange];
-					if (isserver) then {
-						[_aircraft,false] remoteExecCall ["lock",_aircraft];    // let the machine, where the vehicle is local unlock it (only the server knows, who the owner is!!!)
-					}
-					else {
-						[[_aircraft,false],["lock",_aircraft]] remoteExecCall ["remoteExecCall", 2];    // If run on HC, move to the server. Server will remoteexec on local machine
-					};					
+					_airPatrol set[4,diag_tickTime + [GMSAI_respawnTimeAircraftPatrol] call GMS_fnc_getNumberFromRange];				
 					GMSAI_airPatrols pushBack _airPatrol;
+					[_aircraft] call GMSAI_fnc_processEmptyVehicle;
 				} else {
 					if (_respawnAt > -1 && diag_tickTime > _respawnAt) then
 					{
@@ -42,7 +37,7 @@ for "_i" from 1 to (count GMSAI_airPatrols) do
 							_airPatrol set[4,-1]; // reset last spawned							
 							GMSAI_airPatrols pushBack _airPatrol;
 						};
-					} else {
+					//} else {
 						
 					};
 				};

@@ -1,0 +1,1 @@
+#define GMSAI_definesLoaded true

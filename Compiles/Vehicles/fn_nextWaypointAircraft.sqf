@@ -1,11 +1,11 @@
 private _leader = _this;
 private _group = group _leader;
 private _nearestEnemy =  _leader findNearestEnemy (position (_leader));
-//diag_log format["_nextWaypointAircraft: _leader = %1 | _group = %2 | _nearestEnemy = %3",_leader,_group,_nearestEnemy];
+diag_log format["_nextWaypointAircraft: _leader = %1 | _group = %2 | _nearestEnemy = %3",_leader,_group,_nearestEnemy];
 private _blacklisted = _group getVariable "GMSAI_blacklistedAreas";
 if !(isNull _nearestEnemy) then
 {
-	//diag_log format["_nextWaypoint : enemies nearby condition : _groupPatrolArea = %1",_groupPatrolArea];
+	diag_log format["_nextWaypoint : enemies nearby condition : _groupPatrolArea = %1",_groupPatrolArea];
 	//private _nextPos = [[position _nearestEnemy,100,100],1] call GMS_fnc_findRandomPosWithinArea select 0;	
 	private _nextPos = position _nearestEnemy getPos[ [15,35] call GMS_fnc_getNumberFromRange,random(359)];
 	//diag_log format["_nextWaypointAircraft: enemies detected, configuring SAD waypoint at _nextPos = %1",_nextPos];	
@@ -19,6 +19,7 @@ if !(isNull _nearestEnemy) then
 	_group setCurrentWaypoint _wp;
 	diag_log format["_nextWaypointAircraft: waypoint for group %1 updated to SAD waypoint at %2",_group,_nextPos];
 } else {
+	diag_log format["_nextWaypoint : NO nearby enemies condition : _groupPatrolArea = %1",_groupPatrolArea];	
 	private _nextPos = [nil,GMSAI_blacklistedAreas] call BIS_fnc_randomPos;	
 	_group setVariable["timeStamp",diag_tickTime];
 	private _wp = [_group, 0];

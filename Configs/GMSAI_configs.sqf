@@ -24,6 +24,7 @@ GMSAI_useKilledAIName = true; // when true, the name of the unit killed will be 
 *********************************/
 
 GMSAI_releaseVehiclesToPlayers = 1;  // set to -1 to disable this feature.
+GMSAI_vehicleDeleteTimer = 600; // vehicles with no live crew will be deleted at this interval after all crew are killed.
 GMSAI_blacklistedAreas = [[[0,0,0],100]];  //  add these as [position, radius]
 GMSAI_checkClassNames = true; // when true, class names listed in the configs will be checked against CfgVehicles, CfgWeapons, ets.
 GMSAI_useCfgPricingForLoadouts = true;
@@ -53,6 +54,7 @@ GMSAI_aircraftTypes = [
 		"B_Heli_Attack_01_F",2,
 		"B_Heli_Transport_03_unarmed_F",5
 ];
+GMSAI_blacklistedTurrets = [];
 /*********************************
 	Static Infantry Spawn Configs
 *********************************/
@@ -61,7 +63,7 @@ GMSAI_launcherCleanup = true;
 GMSAI_useNVG = true;
 GMSAI_removeNVG = false;
 GMSAI_runoverProtection = true;
-gmsai_bodycleanuptimer = 20;
+GMSAI_bodyDeleteTimer = 600;
 
 //GMSAI_StaticSpawnAtLocations = false;
 //GMSAI_StaticSpawnsGrid = true;  // does nothing at present

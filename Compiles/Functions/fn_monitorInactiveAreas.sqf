@@ -66,7 +66,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 									//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
 								};
 								GMSAI_infantryGroups pushBack [_group,_m,"",GMSAI_staticRespawnTime];
-							} count _spawns;
+							} forEach _spawns;
 						GMSAI_activeStaticSpawns pushBack  [_area,diag_tickTime];							
 						} else {
 

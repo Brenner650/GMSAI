@@ -11,7 +11,7 @@ for "_i" from 1 to GMSAI_numberOfAircraftPatrols do
 		_locations pushBack _pos;
 		private _m = createMarker[format["GMSAIairPatrol%1",_i],_pos];
 		_m setMarkerShape "RECTANGLE";
-		_m setMarkerSize [2000,2000];
+		_m setMarkerSize [5000,5000];
 		_blacklistedAreas pushBack _m;
 		_locMarkers pushBack _m;
 	};

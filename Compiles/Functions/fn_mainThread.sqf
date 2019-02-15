@@ -21,6 +21,8 @@ while {true} do
        //diag_log format["_mainThread: calling GMSAI_fnc_monitorAirPatrols at %1",diag_tickTime];
         call GMSAI_fnc_monitorAirPatrols;
         call GMSAI_fnc_monitorInfantryGroups;
+        call GMSAI_fnc_monitorEmptyVehicles;
+        call GMSAI_fnc_monitorDeadUnits;
         _60sec = diag_tickTime + 60;
     };
 };

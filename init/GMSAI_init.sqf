@@ -1,3 +1,4 @@
+#include "\addons\GMSAI\init\GMSAI_defines.hpp"
 //waitUntil {GMSCoreInitialized};
 call compileFinal preprocessFileLineNumbers "addons\GMSAI\Variables\GMSAI_Variables.sqf";
 call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_configs.sqf";
