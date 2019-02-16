@@ -11,7 +11,7 @@ if (count(units _group) < 1) then
 if (isPlayer _killer) then 
 {
 	[_unit,["MPKilled","MPHit"]] call GMS_fnc_removeMPEventHandlers;
-	//[_unit,["Reloaded"]] call GMS_fnc_removeEventHandlers;
+	[_unit,["Reloaded"]] call GMS_fnc_removeEventHandlers;
 	if (GMSAI_removeNVG) then
 	{
 		[_unit] call GMS_fnc_removeNVG;

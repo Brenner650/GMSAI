@@ -3,5 +3,9 @@ for "_i" from 1 to (count GMSAI_infantryGroups) do
 {
     if (_i > (count GMSAI_infantryGroups)) exitWith {};
     private _g = GMSAI_infantryGroups deleteAt 0;
-    if !(_g isEqualTo grpNull) then {GMSAI_infantryGroups pushBack _g};
+    if !(_g isEqualTo grpNull) then 
+    {
+        //  Add unstuck monitoring.
+        GMSAI_infantryGroups pushBack _g;
+    };
 };

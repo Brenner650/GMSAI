@@ -83,7 +83,7 @@ if (GMSAI_useDynamicSpawns) then
 								_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
 								//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
 							};
-							GMSAI_infantryGroups pushBack [_group,_m,_player,GMSAI_dynamicRespawnTime];
+							GMSAI_infantryGroups pushBack _group;
 						};
 					} else {
 						_player setVariable["GMSAI_dynamicRespawnAt",diag_tickTime + (GMSAI_dynamicDespawnTime/2)];

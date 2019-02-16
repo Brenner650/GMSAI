@@ -35,11 +35,9 @@ GMSAI_blacklistedGear = [];
 *********************************/
 GMSAI_numberOfAircraftPatrols = 5;
 GMSAI_aircraftPatrolDifficulty =  [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
-GMSAI_respawnTimeAircraftPatrol = [600,900];
-GMSAI_oddsParatroops = 0.5;
-GMSAI_numberParatroops = [2,4]; // can be a single value (1, [1]) or a range
-GMSAI_paratroopRespawnTimer = 900;
-GMSAI_gunners = 3;
+GMSAI_aircraftRespawnTime = 900;
+GMSAI_aircraftChanceOfParatroops = 0.20;  // Chance that detection of enemy players will trigger paratroopers
+GMSAI_aircraftGunners = 3;
 GMSAI_airpatrolResapwns = -1;
 // treat aircraft types as weighted arrayIntersect
 GMSAI_aircraftTypes = [
@@ -50,10 +48,33 @@ GMSAI_aircraftTypes = [
 		"I_Heli_light_03_F",1,
 		"I_Plane_Fighter_03_AA_F",1,
 		"O_Heli_Light_02_F",2,
-		//"Exile_Chopper_Huey_Armed_Green",1,
 		"B_Heli_Attack_01_F",2,
 		"B_Heli_Transport_03_unarmed_F",5
 ];
+
+GMSAI_numberOfUAVPatrols = 5;
+GMSAI_UAVTypes = ["I_UAV_01_F",1];
+GMSAI_UAVDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
+GMSAI_UAVRespawnTime = 900;
+GMSAI_UAVChanceOfPParatroops = 0.20; // Chance that detection of enemy players will trigger paratroopers
+
+GMSAI_oddsParatroops = 0.5;
+GMSAI_numberParatroops = [2,4]; // can be a single value (1, [1]) or a range
+GMSAI_paratroopDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
+GMSAI_paratroopRespawnTimer = 900;
+GMSAI_paratroopAircraftTypes = [  //  Used to carry paratroops in to locations spotted by UAVs or UGVs
+		"B_Heli_Transport_01_F",5,
+		"B_Heli_Light_01_F",1,
+		"I_Heli_light_03_unarmed_F",5,
+		"B_Heli_Transport_03_unarmed_green_F",5,
+		"I_Heli_light_03_F",1,
+		"O_Heli_Light_02_F",2,
+		"B_Heli_Transport_03_unarmed_F",5
+];
+
+
+
+
 GMSAI_blacklistedTurrets = [];
 /*********************************
 	Static Infantry Spawn Configs
