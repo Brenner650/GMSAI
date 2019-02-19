@@ -25,18 +25,21 @@ GMSAI_useKilledAIName = true; // when true, the name of the unit killed will be 
 
 GMSAI_releaseVehiclesToPlayers = 1;  // set to -1 to disable this feature.
 GMSAI_vehicleDeleteTimer = 600; // vehicles with no live crew will be deleted at this interval after all crew are killed.
-GMSAI_blacklistedAreas = [[[0,0,0],100]];  //  add these as [position, radius]
+
 GMSAI_checkClassNames = true; // when true, class names listed in the configs will be checked against CfgVehicles, CfgWeapons, ets.
 GMSAI_useCfgPricingForLoadouts = true;
 GMSAI_maxPricePerItem = 1000;
 GMSAI_blacklistedGear = [];
+GMSAI_blackListedAreas = [
+	[[0,0,0],100]
+]; // Ady any areas you want excluded from searches for waypoints.
 /*********************************
 	Aircraft Patrol Spawn Configs
 *********************************/
 GMSAI_numberOfAircraftPatrols = 5;
 GMSAI_aircraftPatrolDifficulty =  [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_aircraftRespawnTime = 900;
-GMSAI_aircraftChanceOfParatroops = 0.20;  // Chance that detection of enemy players will trigger paratroopers
+GMSAI_aircraftChanceOfParatroops = 0.9999;  // Chance that detection of enemy players will trigger paratroopers
 GMSAI_aircraftGunners = 3;
 GMSAI_airpatrolResapwns = -1;
 // treat aircraft types as weighted arrayIntersect
@@ -56,13 +59,13 @@ GMSAI_numberOfUAVPatrols = 5;
 GMSAI_UAVTypes = ["I_UAV_01_F",1];
 GMSAI_UAVDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
 GMSAI_UAVRespawnTime = 900;
-GMSAI_UAVChanceOfPParatroops = 0.20; // Chance that detection of enemy players will trigger paratroopers
+GMSAI_UAVChanceOfPParatroops = 0.99999; // Chance that detection of enemy players will trigger paratroopers
 
 GMSAI_oddsParatroops = 0.5;
 GMSAI_numberParatroops = [2,4]; // can be a single value (1, [1]) or a range
 GMSAI_paratroopDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
 GMSAI_paratroopRespawnTimer = 900;
-GMSAI_paratroopAircraftTypes = [  //  Used to carry paratroops in to locations spotted by UAVs or UGVs
+GMSAI_paratroopAircraftTypes = [  // Note: this is a weighted array of vehicles used to carry paratroops in to locations spotted by UAVs or UGVs
 		"B_Heli_Transport_01_F",5,
 		"B_Heli_Light_01_F",1,
 		"I_Heli_light_03_unarmed_F",5,
@@ -72,8 +75,14 @@ GMSAI_paratroopAircraftTypes = [  //  Used to carry paratroops in to locations s
 		"B_Heli_Transport_03_unarmed_F",5
 ];
 
-
-
+GMSAI_noVehiclePatrols = 5;
+GMSAI_vehiclePatroDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
+GMSAI_vehiclePatrolDelete = 600;
+GMSAI_vehiclePatrolRespawn = 600;
+GMSAI_blackListedAreasVehicles = []; //  List location names or coordinates/radius to which vehicles should not be sent. They may still pass through but will not patrol there.
+GMSAI_patrolVehicles = [  // Weighted array of vehicles spawned to patrol roads and cities.
+	"C_Offroad_01_F",1
+];
 
 GMSAI_blacklistedTurrets = [];
 /*********************************
@@ -85,6 +94,7 @@ GMSAI_useNVG = true;
 GMSAI_removeNVG = false;
 GMSAI_runoverProtection = true;
 GMSAI_bodyDeleteTimer = 600;
+//GMSAI_blacklistedAreasInfantry = GMSAI_blackListedAreas + [ [1,1,1],100];  //  add these as [position, radius]. Add trader locations or other areas to which you do not want AI moving.
 
 //GMSAI_StaticSpawnAtLocations = false;
 //GMSAI_StaticSpawnsGrid = true;  // does nothing at present

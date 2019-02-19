@@ -51,11 +51,18 @@ class CfgFunctions {
 		class Vehicles {
 			file = "addons\GMSAI\Compiles\Vehicles";
 			class EH_crewHitHeli {};
+			class EH_crewHitVehicle {};
 			class EH_crewKilledHeli {};
+			class EH_crewKilledVehicle {};
 			class EH_crewGetOut {};
 			class EH_aircraftHit {};
+			class EH_vehicleHit {};
 			class flyInParatroops {};
 			class initializeAircraftPatrols {};
+			class initializeVehiclePatrols {};
+			class nextWaypointVehicles {};
+			class loiterWaypointVehicles {};
+			class monitorVehiclePatrols {};
 			class initializeUAVPatrols {};			
 			class monitorEmptyVehicles {};
 			class monitorAirPatrols {};  
@@ -63,10 +70,12 @@ class CfgFunctions {
 			class nextWaypointAircraft {};			
 			class processAircraftCrewHit {};
 			class processAircraftCrewKill {};
+			class processVehicleCrewHit {};
 			class processVehicleCrewKill {};
 			class processCrewGetoutEvent {};
 			class processEmptyVehicle {};						
 			class processAircraftHit {};
+			class processVehicleHit {};
 			class spawnHelicoptorPatrol {};			
 			class spawnParatroops {};
 			class spawnUAVPatrol {};

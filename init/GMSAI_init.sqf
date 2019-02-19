@@ -8,3 +8,4 @@ call GMSAI_fnc_initializeAircraftPatrols;
 call GMSAI_fnc_initializeUAVPatrols;
 [] spawn GMSAI_fnc_mainThread;
 GMSAI_Initialized = true;
+

@@ -17,6 +17,7 @@ _pilot moveInDriver _heli;
 _pilot  doMove (_pos getPos[3000,random(359)]); 
 _group selectLeader _pilot;
 diag_log format["_fnc_spawnMissionHeli: group %1 contains %2 crew | _pos = %3",_group, count _crew, _pos];
+//[_heli] call GMSAI_fnc_spawnParatroops;
 private _difficulty = selectRandomWeighted GMSAI_aircraftPatrolDifficulty;
 [_group,GMSAI_unitDifficulty select (_difficulty)] call GMS_fnc_setupGroupSkills;
 [_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;

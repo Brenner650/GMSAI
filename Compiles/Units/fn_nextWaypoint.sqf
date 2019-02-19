@@ -2,7 +2,7 @@ private _leader = _this;
 private _group = group _leader;
 private _nearestEnemy =  _leader findNearestEnemy (position (_leader));
 diag_log format["_nextWaypoint: _leader = %1 | _group = %2 | _nearestEnemy = %3",_leader,_group,_nearestEnemy];
-private _blacklisted = _group getVariable "GMSAI_blacklistedAreas";
+private _blacklisted = _group getVariable "GMSAI_blackListedAreas";
 if !(isNull _nearestEnemy) then
 {
 	diag_log format["_nextWaypointInfantry : enemies nearby condition : _groupPatrolArea = %1",_groupPatrolArea];
