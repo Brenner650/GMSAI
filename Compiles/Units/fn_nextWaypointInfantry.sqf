@@ -14,7 +14,7 @@ if !(isNull _nearestEnemy) then
 	_wp setWaypointPosition [_nextPos,5];
 	_wp setWaypointType "SAD";
 	_wp setWaypointSpeed (_group getVariable "GMSAI_waypointSpeed");
-	_wp setWaypointStatements ["true","this call GMSAI_fnc_nextWaypoint;"];
+	_wp setWaypointStatements ["true","this call GMSAI_fnc_nextWaypointInfantry;"];
 	_wp setWaypointTimeout [45,60,75];	
 	_group setCurrentWaypoint _wp;
 	diag_log format["_nextWaypoint: waypoint for group %1 updated to SAD waypoint at %2",_group,_nextPos];

@@ -76,9 +76,11 @@ GMSAI_paratroopAircraftTypes = [  // Note: this is a weighted array of vehicles 
 ];
 
 GMSAI_noVehiclePatrols = 5;
+GMSAI_patroVehicleCrewCount = [2,4];
 GMSAI_vehiclePatroDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
-GMSAI_vehiclePatrolDelete = 600;
-GMSAI_vehiclePatrolRespawn = 600;
+GMSAI_vehiclePatrolDeleteTime = 600;
+GMSAI_vehiclePatrolRespawnTime = 600;
+GMSAI_vehiclePatrolRespawns = -1;
 GMSAI_blackListedAreasVehicles = []; //  List location names or coordinates/radius to which vehicles should not be sent. They may still pass through but will not patrol there.
 GMSAI_patrolVehicles = [  // Weighted array of vehicles spawned to patrol roads and cities.
 	"C_Offroad_01_F",1

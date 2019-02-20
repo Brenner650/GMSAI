@@ -13,12 +13,12 @@ private _difficulty = selectRandomWeighted GMSAI_paratroopDifficulty;
 (boundingBoxReal _aircraft) params["_b1","_b2"];
 private _length = abs((_b2 select 1) - (_b1 select 1));
 {
-	_spawnPos = (getPosATL _aircraft) getPos[10,(getDir _aircraft) + 180];
+	_spawnPos = (getPosATL _aircraft) getPos[10,(getDir _aircraft) + 180 + _forEachIndex];
 	_chute = createVehicle ["Steerable_Parachute_F", [_spawnPos select 0, _spawnPos select 1, (getPosATL _aircraft) select 2], [], 0, "FLY"];
 	_x assignAsDriver _chute;
 	_x moveInDriver _chute;
 	private _posX = getPosATL _x;
 	//diag_log format["_fnc_spawnParatroops: unit _x dropping in using chute %2 at altitude %3",_x,_chute,_posX select 2];
 	//diag_log format["_fnc_spawnParatroops: unit pos = %1 | chopper pos = %2 | distance %3",getPosATL _x,getPosATL _aircraft, _x distance _aircraft];
-	uiSleep 2;
+	//uiSleep 2;
 } forEach (units _group);

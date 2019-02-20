@@ -6,6 +6,7 @@ private _staticLocationSpawns = [] call GMSAI_fnc_ConfigureStaticSpawnsForLocati
 _staticLocationSpawns = nil;
 call GMSAI_fnc_initializeAircraftPatrols;
 call GMSAI_fnc_initializeUAVPatrols;
+call GMSAI_fnc_initializeVehiclePatrols;
 [] spawn GMSAI_fnc_mainThread;
 GMSAI_Initialized = true;
 

@@ -1,9 +1,3 @@
-
-
-//_m = createMarker["spawnPos",_spawnPos];
-//_m setMarkerType "mil_dot";
-//_m setMarkerText "Spawn Position";
-//systemChat format["_spawnPos = %1",_spawnPos];
 fn_selectDropWaypoint = {
 	diag_log format ["heli %1 slowing for paratroop deployment",vehicle _this];
 	private _group = group _this;
@@ -15,11 +9,6 @@ fn_arrivedOnStation = {
 	_heli setSpeedMode "LIMITED";
 	_this call fn_dropPayload;
 	diag_log format["Heli %1 Arrived On Station",_heli];	
-	//_group setCurrentWaypoint[_group,3];
-	//uiSleep 5;
-	//
-	//uiSleep 5;
-	//_heli setSpeedMode "FULL";
 };
 fn_dropPayload = {
 	_heli = vehicle _this;
@@ -71,14 +60,6 @@ _wp1 setWaypointStatements["true","this call fn_selectDropWaypoint;"];
 _wp2 = _group addWaypoint [position _unit, 100,2, "targetPosition"];
 _wp2 setWaypointSpeed "LIMITED";
 _wp2 setWaypointStatements ["true","this call fn_arrivedOnStation;"];
-//_wp3 = _group addWaypoint [position player, 0, 3, "prepareDropoff"];
-//_wp3 setWaypointStatements["true","this call fn _hoverAndDropoff;"];
-//_wp3 setWaypointSpeed "LIMITED";
-//_wp3 setWaypointTimeout [5,7,9];
-//_positionDespawn = (position _unit) getPos[3000,(_unit getRelDir _spawnPos) + 180];
-//_m = createMarker["despawnPos",_positionDespawn];
-//_m setMarkerType "mil_dot";
-//_m setMarkerText "Despawn Here";
 _wp4 = _group addWaypoint[(position _unit) getPos[3000,(_unit getRelDir _spawnPos) + 180],0,3,"despanPosn"];
 _wp4 setWaypointStatements["true","this call fn_cleanup;"];
 _wp4 setWaypointSpeed "NORMAL";

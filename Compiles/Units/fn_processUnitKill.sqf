@@ -8,18 +8,18 @@ if (count(units _group) < 1) then
 {
 	deleteGroup _group;
 };
+[_unit,["MPKilled","MPHit"]] call GMS_fnc_removeMPEventHandlers;
+[_unit,["Reloaded"]] call GMS_fnc_removeEventHandlers;
+if (GMSAI_removeNVG) then
+{
+	[_unit] call GMS_fnc_removeNVG;
+};
+if (GMSAI_launcherCleanup) then
+{
+	[_unit] call GMS_fnc_removeLauncher;
+};
 if (isPlayer _killer) then 
 {
-	[_unit,["MPKilled","MPHit"]] call GMS_fnc_removeMPEventHandlers;
-	[_unit,["Reloaded"]] call GMS_fnc_removeEventHandlers;
-	if (GMSAI_removeNVG) then
-	{
-		[_unit] call GMS_fnc_removeNVG;
-	};
-	if (GMSAI_launcherCleanup) then
-	{
-		[_unit] call GMS_fnc_removeLauncher;
-	};
 	if (_isLegal) then
 	{
 		_lastkill = _killer getVariable["GMSAI_timeOfLastkill",diag_tickTime];

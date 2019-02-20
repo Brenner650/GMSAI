@@ -35,8 +35,10 @@ class CfgFunctions {
 		};
 		class Units {
 			file = "addons\GMSAI\Compiles\Units";
+			class ConfigureStaticSpawnsForLocations {};
+			class ConfigureRandomSpawnLocations {};			
 			class infantryGroupMonitor {};
-			class nextWaypoint {};
+			class nextWaypointInfantry {};
 			class initializeWaypointInfantry {};
 			class EH_InfantryKilled {};
 			class EH_InfantryHit {};
@@ -76,14 +78,14 @@ class CfgFunctions {
 			class processEmptyVehicle {};						
 			class processAircraftHit {};
 			class processVehicleHit {};
-			class spawnHelicoptorPatrol {};			
+			class spawnHelicoptorPatrol {};		
+			class spawnVehiclePatrol {};	
 			class spawnParatroops {};
 			class spawnUAVPatrol {};
 		};
 		class Initialization {
 			file = "addons\GMSAI\Compiles\Initialization";
-			class ConfigureStaticSpawnsForLocations {};
-			class ConfigureRandomSpawnLocations {};
+
 		};
 		class Functions {
 			file = "addons\GMSAI\Compiles\Functions";

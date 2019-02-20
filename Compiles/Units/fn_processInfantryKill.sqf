@@ -5,7 +5,6 @@ if (isPlayer _killer && GMSAI_runoverProtection && vehicle _killer isEqualTo _ki
 {
 	_unit setDamage 0;	
 	_isLegal = false;
-
 };
 [_unit,_killer,_isLegal] call GMSAI_fnc_processUnitKill;
 
