@@ -36,18 +36,20 @@ class CfgFunctions {
 		class Units {
 			file = "addons\GMSAI\Compiles\Units";
 			class ConfigureStaticSpawnsForLocations {};
-			class ConfigureRandomSpawnLocations {};			
-			class infantryGroupMonitor {};
-			class nextWaypointInfantry {};
-			class initializeWaypointInfantry {};
+			class ConfigureRandomSpawnLocations {};		
 			class EH_InfantryKilled {};
 			class EH_InfantryHit {};
-			class EH_infantryReloaded {};
+			class EH_infantryReloaded {};				
+			class infantryGroupMonitor {};
+			class initializeWaypointInfantry {};
+			class monitorActiveAreas {};
+			class monitorInactiveAreas {};			
+			class monitorInfantryGroups {};
+			class monitorDeadUnits {};			
+			class nextWaypointInfantry {};			
 			class processInfantryKill {};
 			class processUnitKill {};
 			class processInfantryHit {};
-			class monitorInfantryGroups {};
-			class monitorDeadUnits {};
 			class addEventHandlersInfantry {};
 		};
 		class Vehicles {
@@ -92,8 +94,7 @@ class CfgFunctions {
 			class addStaticSpawn {};
 			class dynamicAIManager {};
 			class mainThread {};
-			class monitorActiveAreas {};
-			class monitorInactiveAreas {};
+
 			//class checkClassnames {};
 		};
 	};
