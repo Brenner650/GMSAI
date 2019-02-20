@@ -40,9 +40,9 @@ _vehicle addMPEventHandler["MPHit",{_this call GMSAI_fnc_EH_vehicleHit}];
 {
 	_x addMPEventHandler ["MPKilled", {_this call GMSAI_fnc_EH_crewKilledVehicle;}];
 	_x addMPEventHandler ["MPHit", {_this call GMSAI_fnc_EH_crewHitVehicle;}];
+	_x addEventHandler ["GetOut",{_this call GMSAI_fnc_EH_CrewGetOut;}]
 } forEach (crew _vehicle);
 //  Need to add checks to to unlock vehicle if release to players is allowed.
 private _return = [_group,_vehicle];
 diag_log format["[GMSAI] _fnc_spawnVehiclePatrol: _return = %1",_return];
 _return
-

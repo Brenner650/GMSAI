@@ -32,7 +32,8 @@ GMSAI_maxPricePerItem = 1000;
 GMSAI_blacklistedGear = [];
 GMSAI_blackListedAreas = [
 	[[0,0,0],100]
-]; // Ady any areas you want excluded from searches for waypoints.
+]; // Add any areas you want excluded from searches for waypoints.
+GMSAI_forbidenWeapons = ["LMG_RCWS","LMG_M200","HMG_127","HMG_127_APC","HMG_M2","HMG_NSVT","GMG_40mm","GMG_UGV_40mm","autocannon_40mm_CTWS","autocannon_30mm_CTWS","autocannon_35mm","LMG_coax","autocannon_30mm","HMG_127_LSV_01"];
 /*********************************
 	Aircraft Patrol Spawn Configs
 *********************************/

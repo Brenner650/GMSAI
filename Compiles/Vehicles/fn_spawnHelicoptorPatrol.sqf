@@ -42,6 +42,7 @@ _heli addMPEventHandler["MPHit",{_this call GMSAI_fnc_EH_aircraftHit}];
 {
 	_x addMPEventHandler ["MPKilled", {_this call GMSAI_fnc_EH_crewKilledHeli;}];
 	_x addMPEventHandler ["MPHit", {_this call GMSAI_fnc_EH_crewHitHeli;}];
+	_x addEventHandler ["GetOut",{_this call GMSAI_fnc_EH_CrewGetOut;}]	
 } forEach (crew _heli);
 //  Need to add checks to to unlock vehicle if release to players is allowed.
 private _return = [_group,_heli];

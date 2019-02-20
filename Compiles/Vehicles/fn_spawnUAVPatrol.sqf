@@ -16,11 +16,11 @@ private _difficulty = selectRandomWeighted GMSAI_UAVDifficulty;
 [_group,GMSAI_unitDifficulty select (_difficulty)] call GMS_fnc_setupGroupSkills;
 [_group] call GMS_fnc_setupGroupBehavior;
 [_uav] call GMS_fnc_emptyObjectInventory;
-_uav addMPEventHandler["MPHit",{_this call GMSAI_fnc_EH_aircraftHit}];
-(driver _uav) call GMSAI_fnc_nextWaypointAircraft;	
+_uav addMPEventHandler["MPHit",{_this call GMSAI_fnc_EH_aircraftHit}];	
 {
 	_x addMPEventHandler ["MPKilled", {_this call GMSAI_fnc_EH_crewKilledHeli;}];
 	_x addMPEventHandler ["MPHit", {_this call GMSAI_fnc_EH_crewHitHeli;}];
 } forEach (crew _uav);
+(driver _uav) call GMSAI_fnc_nextWaypointAircraft;
 private _return = [_group,_uav];
 _return

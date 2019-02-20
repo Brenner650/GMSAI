@@ -15,14 +15,13 @@ if !(_veh getVariable["initialized",false]) exitWith
 	_wp setWaypointStatements ["true","this call fn_nextWaypointVehicle;"];
 	_group setCurrentWaypoint [_group,0]; 
 	_veh setVariable["initialized",true];
-
 };
 private _nearestEnemy =  _leader findNearestEnemy (position (_leader));
 diag_log format["_nextWaypointVehicle: _leader = %1 | _group = %2 | _nearestEnemy = %3",_leader,_group,_nearestEnemy];
 //private _blacklisted = _group getVariable "GMSAI_blacklistedAreas";
 if !(isNull _nearestEnemy) then
 {
-	private _nextPos = position _nearestEnemy getPos[ [15,35] call GMS_fnc_getNumberFromRange,random(359)];
+	private _nextPos = position _nearestEnemy getPos[ [5,20/(_leader knowsAbout _nearestEnemy)] call GMS_fnc_getNumberFromRange,random(359)];
 	diag_log format["_nextWaypointVehicle: enemies detected, configuring SAD waypoint at _nextPos = %1",_nextPos];	
 	_group setVariable["timeStamp",diag_tickTime];	
 	private _wp = [_group,0];
@@ -44,12 +43,6 @@ if !(isNull _nearestEnemy) then
 		_loc = selectRandom _nearLocations;
 		_pos = locationPosition _loc;
 	};
-	//systemChat format["position selected = %1 located at %2",text _loc,locationPosition _loc];
-	//_m = createMarker["wpPos",_pos];
-	//_m setMarkerType "mil_dot";	
-	//_m setMarkerPos _pos;
-	//_m setMarkerText text _loc;
-	//_m setMarkerColor "ColorRed";
 	private _wp = _group addWaypoint [_pos,0,0,format["%1",text _loc]];
 	_wp setWaypointPosition[_pos,10];
 	_wp setWaypointTimeout[5,7,9];
