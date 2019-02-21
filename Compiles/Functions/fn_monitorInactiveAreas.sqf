@@ -63,7 +63,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 									_m setMarkerColor "COLORRED";
 									_m setMarkerPos _groupSpawnPos;
 									_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
-									//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
+									_group setVariable["groupMarker",_m];
 								};
 								GMSAI_infantryGroups pushBack _group;
 							} forEach _spawns;

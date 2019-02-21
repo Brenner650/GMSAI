@@ -35,67 +35,69 @@ class CfgFunctions {
 		};
 		class Units {
 			file = "addons\GMSAI\Compiles\Units";
-			class ConfigureStaticSpawnsForLocations {};
-			class ConfigureRandomSpawnLocations {};		
+	
 			class EH_InfantryKilled {};
 			class EH_InfantryHit {};
 			class EH_infantryReloaded {};				
 			class infantryGroupMonitor {};
 			class initializeWaypointInfantry {};
-			class monitorActiveAreas {};
-			class monitorInactiveAreas {};			
-			class monitorInfantryGroups {};
-			class monitorDeadUnits {};			
+	
 			class nextWaypointInfantry {};			
 			class processInfantryKill {};
 			class processUnitKill {};
 			class processInfantryHit {};
 			class addEventHandlersInfantry {};
 		};
-		class Vehicles {
-			file = "addons\GMSAI\Compiles\Vehicles";
-			class EH_crewHitHeli {};
-			class EH_crewHitVehicle {};
-			class EH_crewKilledHeli {};
-			class EH_crewKilledVehicle {};
-			class EH_crewGetOut {};
-			class EH_aircraftHit {};
-			class EH_vehicleHit {};
-			class flyInParatroops {};
-			class initializeAircraftPatrols {};
-			class initializeVehiclePatrols {};
-			class nextWaypointVehicles {};
-			class loiterWaypointVehicles {};
-			class monitorVehiclePatrols {};
-			class initializeUAVPatrols {};			
-			class monitorEmptyVehicles {};
-			class monitorAirPatrols {};  
-			class monitorUAVPatrols {};			
+		class AirVehicles {
+			file = "addons\GMSAI\Compiles\AirVehicles";
+			class EH_crewHitHeli {};	
+			class EH_crewKilledHeli {};		
+			class EH_aircraftHit {};	
 			class nextWaypointAircraft {};			
 			class processAircraftCrewHit {};
-			class processAircraftCrewKill {};
+			class processAircraftCrewKill {};	
+			class processAircraftHit {};		
+			class spawnParatroops {};
+			class spawnUAVPatrol {};	
+			class spawnHelicoptorPatrol {};															
+		};
+		class LandVehicles {
+			file = "addons\GMSAI\Compiles\LandVehicles";
+			class EH_crewHitVehicle {};
+			class EH_crewKilledVehicle {};
+			class EH_crewGetOut {};
+			class EH_vehicleHit {};
+			class flyInParatroops {};
+			class nextWaypointVehicles {};
+			class loiterWaypointVehicles {};
 			class processVehicleCrewHit {};
 			class processVehicleCrewKill {};
 			class processCrewGetoutEvent {};
 			class processEmptyVehicle {};						
-			class processAircraftHit {};
 			class processVehicleHit {};
-			class spawnHelicoptorPatrol {};		
 			class spawnVehiclePatrol {};	
-			class spawnParatroops {};
-			class spawnUAVPatrol {};
 		};
 		class Initialization {
 			file = "addons\GMSAI\Compiles\Initialization";
-
+			class initializeStaticSpawnsForLocations {};
+			class initializeRandomSpawnLocations {};				
+			class initializeAircraftPatrols {};
+			class initializeUAVPatrols {};			
+			class initializeVehiclePatrols {};
 		};
 		class Functions {
 			file = "addons\GMSAI\Compiles\Functions";
 			class addStaticSpawn {};
 			class dynamicAIManager {};
 			class mainThread {};
-
-			//class checkClassnames {};
+			class monitorVehiclePatrols {};
+			class monitorEmptyVehicles {};
+			class monitorAirPatrols {};  
+			class monitorUAVPatrols {};				
+			class monitorActiveAreas {};
+			class monitorInactiveAreas {};			
+			class monitorInfantryGroups {};
+			class monitorDeadUnits {};
 		};
 	};
 };
