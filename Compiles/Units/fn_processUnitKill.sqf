@@ -1,4 +1,4 @@
-params["_unit","_killer","_isLegal"];
+params["_unit","_killer",["_isLegal",true]];
 diag_log format["[GMSAI] processUnitKilled: typeOf _killer = %1  |  typeOf _killer = %2",typeOf _killer, typeOf _killer];
 _unit setVariable ["GMSAI_deleteAt", (diag_tickTime) + GMSAI_bodyDeleteTimer];
 GMSAI_deadAI pushback _unit;

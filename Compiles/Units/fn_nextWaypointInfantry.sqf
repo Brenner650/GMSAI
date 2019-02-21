@@ -7,11 +7,11 @@ if !(isNull _nearestEnemy) then
 {
 	diag_log format["_nextWaypointInfantry : enemies nearby condition : _groupPatrolArea = %1",_groupPatrolArea];
 	//private _nextPos = [[position _nearestEnemy,100,100],1] call GMS_fnc_findRandomPosWithinArea select 0;	
-	private _nextPos = position _nearestEnemy getPos[ [15,35] call GMS_fnc_getNumberFromRange,random(359)];
+	private _nextPos = position _nearestEnemy getPos[(_leader distance _nearestEnemy)/2 ,(_nextPos getRelDir _nearestEnemy) + (random(45) * selectRandom[-1,1])];
 	diag_log format["_nextWaypoint: enemies detected, configuring SAD waypoint at _nextPos = %1",_nextPos];	
 	_group setVariable["timeStamp",diag_tickTime];	
 	private _wp = [_group,0];
-	_wp setWaypointPosition [_nextPos,5];
+	_wp setWaypointPosition [_nextPos,0];
 	_wp setWaypointType "SAD";
 	_wp setWaypointSpeed (_group getVariable "GMSAI_waypointSpeed");
 	_wp setWaypointStatements ["true","this call GMSAI_fnc_nextWaypointInfantry;"];
@@ -35,7 +35,7 @@ if !(isNull _nearestEnemy) then
 	_wp setWaypointType "LOITER";
 	_wp setWaypointLoiterType "CIRCLE";
 	_wp setWaypointStatements ["true","this call GMSAI_fnc_nextWaypoint;"];
-	_wp setWaypointTimeout  [45,60,75];
+	_wp setWaypointTimeout  [5,7,9];
 	_group setCurrentWaypoint _wp;
 	diag_log format["_nextWaypoint: waypoint for group updated to LOITER waypoint at %2",_group,_nextPos];
 };

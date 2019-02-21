@@ -35,13 +35,10 @@ class CfgFunctions {
 		};
 		class Units {
 			file = "addons\GMSAI\Compiles\Units";
-	
 			class EH_InfantryKilled {};
 			class EH_InfantryHit {};
 			class EH_infantryReloaded {};				
-			class infantryGroupMonitor {};
 			class initializeWaypointInfantry {};
-	
 			class nextWaypointInfantry {};			
 			class processInfantryKill {};
 			class processUnitKill {};
@@ -53,6 +50,7 @@ class CfgFunctions {
 			class EH_crewHitHeli {};	
 			class EH_crewKilledHeli {};		
 			class EH_aircraftHit {};	
+			class flyInParatroops {};			
 			class nextWaypointAircraft {};			
 			class processAircraftCrewHit {};
 			class processAircraftCrewKill {};	
@@ -67,7 +65,6 @@ class CfgFunctions {
 			class EH_crewKilledVehicle {};
 			class EH_crewGetOut {};
 			class EH_vehicleHit {};
-			class flyInParatroops {};
 			class nextWaypointVehicles {};
 			class loiterWaypointVehicles {};
 			class processVehicleCrewHit {};
@@ -91,12 +88,13 @@ class CfgFunctions {
 			class dynamicAIManager {};
 			class mainThread {};
 			class monitorVehiclePatrols {};
+			class monitorInfantryGroups {};			
 			class monitorEmptyVehicles {};
 			class monitorAirPatrols {};  
 			class monitorUAVPatrols {};				
 			class monitorActiveAreas {};
 			class monitorInactiveAreas {};			
-			class monitorInfantryGroups {};
+			class monitorInfantryPatrols {};
 			class monitorDeadUnits {};
 		};
 	};

@@ -22,10 +22,8 @@ GMSAI_useKilledAIName = true; // when true, the name of the unit killed will be 
 /*********************************
 	 Patrol Spawn Configs
 *********************************/
-
 GMSAI_releaseVehiclesToPlayers = 1;  // set to -1 to disable this feature.
 GMSAI_vehicleDeleteTimer = 600; // vehicles with no live crew will be deleted at this interval after all crew are killed.
-
 GMSAI_checkClassNames = true; // when true, class names listed in the configs will be checked against CfgVehicles, CfgWeapons, ets.
 GMSAI_useCfgPricingForLoadouts = true;
 GMSAI_maxPricePerItem = 1000;
@@ -40,7 +38,7 @@ GMSAI_forbidenWeapons = ["LMG_RCWS","LMG_M200","HMG_127","HMG_127_APC","HMG_M2",
 /*********************************
 	Aircraft Patrol Spawn Configs
 *********************************/
-GMSAI_numberOfAircraftPatrols = 5;
+GMSAI_numberOfAircraftPatrols = 0;
 GMSAI_aircraftPatrolDifficulty =  [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_aircraftRespawnTime = 900;
 GMSAI_aircraftChanceOfParatroops = 0.9999;  // Chance that detection of enemy players will trigger paratroopers
@@ -59,7 +57,7 @@ GMSAI_aircraftTypes = [
 		"B_Heli_Transport_03_unarmed_F",5
 ];
 
-GMSAI_numberOfUAVPatrols = 5;
+GMSAI_numberOfUAVPatrols = 0;
 GMSAI_UAVTypes = ["I_UAV_01_F",1];
 GMSAI_UAVDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
 GMSAI_UAVRespawnTime = 900;
@@ -79,8 +77,8 @@ GMSAI_paratroopAircraftTypes = [  // Note: this is a weighted array of vehicles 
 		"B_Heli_Transport_03_unarmed_F",5
 ];
 
-GMSAI_noVehiclePatrols = 5;
-GMSAI_patroVehicleCrewCount = [2,4];
+GMSAI_noVehiclePatrols = 0;
+GMSAI_patroVehicleCrewCount = [3,5];
 GMSAI_vehiclePatroDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
 GMSAI_vehiclePatrolDeleteTime = 600;
 GMSAI_vehiclePatrolRespawnTime = 600;
@@ -104,7 +102,7 @@ GMSAI_bodyDeleteTimer = 600;
 
 //GMSAI_StaticSpawnAtLocations = false;
 //GMSAI_StaticSpawnsGrid = true;  // does nothing at present
-GMSAI_useStaticSpawns = true;
+GMSAI_useStaticSpawns = false;
 GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns.
 GMSAI_staticRespawnTime = 600;
 GMSAI_staticDespawnTime = 120;
@@ -112,13 +110,13 @@ GMSAI_StaticSpawnsRandom = 15;  // Determines the number of random spans indepen
 
 // 
 GMSAI_useDynamicSpawns = true;
-GMSAI_dynamicRespawns = -1;  //  Set to 0 to disable, or -1 to have infinite respawns.
-GMSAI_dynamicRespawnTime = 30;
+GMSAI_dynamicRespawns = 0;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns.
+GMSAI_dynamicRespawnTime = 10;
 GMSAI_dynamicDespawnTime = 10;
 GMSAI_dynamicUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_dynamicRandomGroups = [1];
 GMSAI_dynamicRandomUnits = [3];
-GMSAI_dynamicRandomChance = 0.50;
+GMSAI_dynamicRandomChance = 0.999;
 
 GMSAI_staticVillageGroups = 1;
 GMSAI_staticVillageUnitsPerGroup = [1,3];

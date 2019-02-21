@@ -59,6 +59,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 								if (GMSAI_debug > 1) then
 								{
 									_m = createMarker[format["GMSAI_dynamicMarker%1",random(1000000)],_groupSpawnPos];
+									//_group setVariable["GMSAI_groupMarker",_m];
 									_m setMarkerType "mil_triangle";
 									_m setMarkerColor "COLORRED";
 									_m setMarkerPos _groupSpawnPos;

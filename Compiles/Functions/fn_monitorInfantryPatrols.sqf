@@ -5,7 +5,8 @@ for "_i" from 0 to (count GMSAI_infantryGroups) do
 	if !(isNil "_element") then
 	{
 		//diag_log format["[GMSAI] _infantryGroupMonitor: evaluating element %1",_element];
-		_element params["_group","_groupMarker","_player","_respawnTime"];
+		private _element params["_group","_player","_respawnTime",["_groupMarker",""]];
+		
 		//diag_log format["[GMSAI] _infantryGroupMonitor: params of element: _group %1 | _groupMarker",_group,_groupMarker];
 		if ( (isNull _group)) then
 		{
