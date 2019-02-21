@@ -1,3 +1,4 @@
+diag_log format["[GMSAI] _initializeUAVPatrols: GMSAI_numberOfUAVPatrols = %1",GMSAI_numberOfUAVPatrols];
 private _blacklistedAreas = ["water"];
 for "_i" from 1 to GMSAI_numberOfUAVPatrols do
 {

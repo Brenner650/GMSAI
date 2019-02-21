@@ -110,7 +110,7 @@ GMSAI_StaticSpawnsRandom = 15;  // Determines the number of random spans indepen
 
 // 
 GMSAI_useDynamicSpawns = true;
-GMSAI_dynamicRespawns = 0;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns.
+GMSAI_dynamicRespawns = 1;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns.
 GMSAI_dynamicRespawnTime = 10;
 GMSAI_dynamicDespawnTime = 10;
 GMSAI_dynamicUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];

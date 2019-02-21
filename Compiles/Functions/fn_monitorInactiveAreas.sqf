@@ -1,4 +1,4 @@
-//diag_log format["[GMSAI] running inactive area monitor at %1 with %2 inactive spawns",diag_tickTime, count GMSAI_StaticSpawns];
+diag_log format["[GMSAI] running inactive area monitor at %1 with %2 inactive spawns",diag_tickTime, count GMSAI_StaticSpawns];
 #define respawnAt 4
 #define areaDescriptor 0
 #define GMSAI_staticDespawnDistance 400

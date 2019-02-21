@@ -1,4 +1,3 @@
-//GMSAI_noVehiclePatrols = 5;
 diag_log format["[GMSAI] _initializeVehiclePatrols: Begining script | GMSAI_noVehiclePatrols = %1",GMSAI_noVehiclePatrols];
 private _blacklistedAreas = ["water"];
 for "_i" from 1 to GMSAI_noVehiclePatrols do

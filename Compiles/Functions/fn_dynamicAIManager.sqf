@@ -1,7 +1,3 @@
-/*
-	ensure that dynamic AI are spawned and registered with the group MONITOR
-	update timers as needed.
-*/
 #define GMSAI_dynamicSpawnDistance 200
 #define GMSAI_dynamicDespawnDistance 400
 #define GMSAI_alertAIDistance 300
@@ -10,16 +6,44 @@ if (GMSAI_useDynamicSpawns) then
 {
 	{
 		private _player = _x;	
-		if !(isNil (_player getVariable "GMSAI_dynamicAIGroup")) then // a group was spawned so lets evaluate it.
+		private _group = _player getVariable "GMSAI_dynamicAIGroup";
+		if !(isNil "_group") then // a group was spawned so lets evaluate it.
 		{
-			private _activeGroup =  _player getVariable "GMSAI_dynamicAIGroup";
-			if (_activeGroup isEqualTo grpNull || {alive _x} count (units _activeGroup) == 0) then  
+			diag_log format["_dynamicAIManger: evaluating active group %1 for player %2",_group,_player];
+			if (_group isEqualTo grpNull || {alive _x} count (units _group) == 0) then  
 			{
 				_player setVariable["GMSAI_dynamicAIGroup",nil];
 				_player setVariable["GMSAI_dynamicRespawnAt",(diag_tickTime + GMSAI_dynamicRespawnTime)];
-				deleteMarker _player getVariable "GMSAI_groupMarker";
+				deleteMarker (_player getVariable "GMSAI_groupMarker");
+			} else {
+				_lastChecked = _group getVariable "GMSAI_lastCheckedDynamic";
+				if (isNil "_lastChecked") then
+				{
+					_lastChecked = diag_tickTime;
+					_group setVariable ["GMSAI_lastCheckedDynamic",_lastChecked];
+				} else {
+					private _players = allPlayers inAreaArray [getPos (leader _group),GMSAI_dynamicDespawnDistance,GMSAI_dynamicDespawnDistance];
+					if (_players isEqualTo []) then
+					{
+						if (diag_tickTime > (_lastChecked + GMSAI_dynamicDespawnTime)) then
+						{
+							[_group] call GMS_fnc_despawnInfantryGroup;
+							_player setVariable["GMSAI_dynamicAIGroup",nil];
+							_player setVariable["GMSAI_dynamicRespawnAt",(diag_tickTime + GMSAI_dynamicRespawnTime)];
+							deleteMarker (_player getVariable "GMSAI_groupMarker");			
+						};
+					} else {
+						_group setVariable ["GMSAI_lastCheckedDynamic",diag_tickTime];
+						_m = _player getVariable "GMSAI_groupMarker";	
+						if !(isNil _m) then
+						{
+							_m setMarkerPos (getPos(leader _group));
+						};
+					};
+				};
 			};
 		} else {  // no dynamic AI group has been spawned, lets check if one should be
+			diag_log format["_dynamicAIManger: no active dynamic group found for player %1, evaluating spawn parameters",_player];
 			private _respawns = _player getVariable "GMSAI_dynamicAIRespawns";
 			if (isNil "_respawns") then
 			{
@@ -27,9 +51,8 @@ if (GMSAI_useDynamicSpawns) then
 				_player setVariable ["GMSAI_dynamicAIRespawns",GMSAI_dynamicRespawns];
 			};	
 			private _lastSpawnedAt = _player getVariable["dynamicAILastSpawnedAt",0];
-
 			diag_log format["[GMSAI] _dynamicAIManger: evaluating player %1 with AI respawns of %2 and GMSAI_dynamicRespawns of %3",_player,_respawns,GMSAI_dynamicRespawns];		
-			if (_respawns == -1 || _respawns < GMSAI_dynamicRespawns) then
+			if (_respawns == -1 || _respawns <= GMSAI_dynamicRespawns) then
 			{
 				private _respawnAt = _player getVariable "GMSAI_dynamicRespawnAt";
 				if (isNil "_respawnAt") then 
@@ -44,8 +67,8 @@ if (GMSAI_useDynamicSpawns) then
 					_respawns = 0;
 				};
 				diag_log format["[GMSAI] _dynamicAIManger: _respawnAt = %1 | current time %2",_respawnAt,diag_tickTime];		
-				diag_log format["[GMSAI] _dynamicAIManger: _player GMSAI_dynamicRespawnAt = %1 at time %2",_player getVariable "GMSAI_dynamicRespawnAt",diag_tickTime];
-				if (diag_tickTime >_respawnAt && (vehicle _player == _player) && (_respawns == -1 || _respawns <= GMSAI_dynamicRespawns)) then
+				diag_log format["[GMSAI] _dynamicAIManger: _player GMSAI_dynamicRespawns = %1 at time %2",_player getVariable "GMSAI_dynamicRespawns",diag_tickTime];
+				if (diag_tickTime >_respawnAt && (vehicle _player == _player) && (_respawns == -1 || _respawns < GMSAI_dynamicRespawns)) then
 				{
 					diag_log format["[GMSAI] _dynamicAIManger: spawn condition reached"];
 						
@@ -81,13 +104,8 @@ if (GMSAI_useDynamicSpawns) then
 								_group reveal[_player,1];
 								diag_log format["[GMSAI] _dynamicAIManger: _group = %1",_group];
 								_group call GMSAI_fnc_initializeWaypointInfantry;
-								{
-									_x addMPEventHandler["MPKilled",{this call GMSA__fnc_EH_InfantryKilled;}];
-									_x addMPEventHandler["MPHit",{this call GMSAI_fnc_EH_InfantryHit;}];
-									_x addEventHandler["Reloaded",{this call GMSAI_fnc_EH_InfantryReloaded;}];
-								} forEach (units _group);		
+								[_group] call GMSAI_fnc_addEventHandlersInfantry;		
 								_player setVariable["GMSAI_dynamicAIGroup",_group];
-								
 								if (GMSAI_debug > 1) then
 								{
 									_m = createMarker[format["GMSAI_dynamicMarker%1",random(1000000)],_spawnPos];

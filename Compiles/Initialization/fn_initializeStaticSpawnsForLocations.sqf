@@ -1,3 +1,4 @@
+diag_log format["[GMSAI] _initializeStaticSpawnsForLocations: GMSAI_useStaticSpawns = %1",GMSAI_StaticSpawnsRandom];
 if !(GMSAI_useStaticSpawns) exitWith 
 {
 	private _return = [];
