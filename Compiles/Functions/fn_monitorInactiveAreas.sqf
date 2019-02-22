@@ -1,7 +1,9 @@
 diag_log format["[GMSAI] running inactive area monitor at %1 with %2 inactive spawns",diag_tickTime, count GMSAI_StaticSpawns];
 #define respawnAt 4
 #define areaDescriptor 0
-#define GMSAI_staticDespawnDistance 400
+#define areaGroups 3
+#define timesSpawned 5
+#define GMSAI_staticDespawnDistance 300
 private _spawns = [];
 for "_i" from 1 to (count GMSAI_StaticSpawns) do
 {
@@ -25,13 +27,14 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 						_staticAiDescriptor params["_noGroupsToSpawn","_unitsPerGroup","_difficulty","_chance"];	
 						//private _groupsToSpawn = [_noGroupsToSpawn] call GMS_fnc_getIntegerFromRange;
 						//diag_log format["_monitorInactiveAreas:  _groupsToSpawn = %1",_groupsToSpawn];
-						_area set[5, (_timesSpawned + 1)];	
+						_area set[timesSpawned, (_timesSpawned + 1)];	
 						//diag_log format["_monitorInactiveAreas: _area = %1",_area];						
 						//diag_log format["_monitorInactiveAreas: _unitsPerGroup = %1 | _staticAiDescriptor = %2",_unitsPerGroup,  _staticAiDescriptor];			
 						private _spawns = [_areaDescriptor,[_noGroupsToSpawn] call GMS_fnc_getIntegerFromRange,_players] call GMS_fnc_findRandomPosWithinArea;
 						//diag_log format["[GMSAI] _Activating spawns at %1 in area %2",_spawns,_area];
 						if !(_spawns isEqualTo []) then
 						{
+							private _spawnedGroups = [];
 							{
 								private _groupSpawnPos = _x;
 								//  params["_groupPos","_units","_alertDistance"];
@@ -66,9 +69,11 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 									_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
 									_group setVariable["GMSAI_groupMarker",_m];
 								};
-								GMSAI_infantryGroups pushBack _group;
+								_spawnedGroups pushBack _group;
+								GMSAI_infantryGroups pushBack [_group,_m];
 							} forEach _spawns;
-						GMSAI_activeStaticSpawns pushBack  [_area,diag_tickTime];							
+							_area set [areaGroups, _spawnedGroups];
+							GMSAI_activeStaticSpawns pushBack  [_area,diag_tickTime];							
 						} else {
 
 						};
