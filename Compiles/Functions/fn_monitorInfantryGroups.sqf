@@ -5,7 +5,7 @@ for "_i" from 1 to (count GMSAI_infantryGroups) do
     private _g = GMSAI_infantryGroups deleteAt 0;
     private _group = grpNull;
     private _marker = "";
-    diag_log format["[GMSAI] _monitorInfantryGroups: _g = %1",_g];
+    //diag_log format["[GMSAI] _monitorInfantryGroups: _g = %1",_g];
     if (typeName _g isEqualTo "ARRAY") then
     {
         _group = _g  select 0;
@@ -16,14 +16,20 @@ for "_i" from 1 to (count GMSAI_infantryGroups) do
         _group = _g;
         _marker = _group getVariable "GMSAI_groupMarker";
     };
-     if (!(_group isEqualTo grpNull) && {alive _x} count (units _group) > 0) then 
+    if (_group isEqualTo grpNull) then
     {
-        //  Add unstuck monitoring.
-        if !(isNil "_marker") then
+         deleteMarker _marker;
+    } else {
+        if ({alive _x} count (units _group) == 0) then
         {
-            diag_log format["_monitorInfantryGroups: _m = %1",_marker];
-            _marker setMarkerPos getPos (leader _group);
+            deleteGroup _group;
+            deleteMarker _marker;
+        } else {
+            if !(isNil "_marker") then
+            {
+                _marker setMarkerPos getPos (leader _group);
+            };
+            GMSAI_infantryGroups pushBack _g;
         };
-        GMSAI_infantryGroups pushBack _g;
     };
 };

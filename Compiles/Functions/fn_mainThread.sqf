@@ -21,7 +21,6 @@ while {true} do
         call GMSAI_fnc_monitorAirPatrols;
         call GMSAI_fnc_monitorUAVPatrols;
         call GMSAI_fnc_monitorVehiclePatrols;
-        //call GMSAI_fnc_monitorInfantryPatrols;
         call GMSAI_fnc_monitorEmptyVehicles;
         call GMSAI_fnc_monitorDeadUnits;
         _60sec = diag_tickTime + 60;

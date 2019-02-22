@@ -99,51 +99,51 @@ GMSAI_removeNVG = false;
 GMSAI_runoverProtection = true;
 GMSAI_bodyDeleteTimer = 600;
 
-GMSAI_useDynamicSpawns = false;
-GMSAI_dynamicRespawns = -1;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns.
-GMSAI_dynamicRespawnTime = 600;
-GMSAI_dynamicDespawnTime = 120;
+GMSAI_useDynamicSpawns = true;
+GMSAI_dynamicRespawns = -1;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns (default).
+GMSAI_dynamicRespawnTime = 10;
+GMSAI_dynamicDespawnTime = 10;
 GMSAI_dynamicUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_dynamicRandomGroups = [1];
 GMSAI_dynamicRandomUnits = [3];
 GMSAI_dynamicRandomChance = 0.20;
 
 GMSAI_useStaticSpawns = true;
-GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns.
+GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns (default). If set == 0 then there will be no spawns in towns/cities.
 GMSAI_staticRespawnTime = 10;
 GMSAI_staticDespawnTime = 10;
-GMSAI_StaticSpawnsRandom = 5;  // Determines the number of random spans independent of cites, town, military areas, ports, airports and other:  default 25
+GMSAI_StaticSpawnsRandom = 5;  // Determines the number of random spans independent of cites, town, military areas, ports, airports and other:  default 25. Set == 0 do have no random spawn areas.
 
 GMSAI_staticVillageGroups = 1;
 GMSAI_staticVillageUnitsPerGroup = [1,3];
 // Difficulties are specified using a weighted array. Any number of options is available. The total relative chance does NOT have to add up to 1, but does specify the relative chance an option will be chosen.
-GMSAI_staticVillageUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10]; // the value after each difficulty level indicates the relative chance it will be selected from the weighted array.
+GMSAI_staticVillageUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10,GMSAI_difficultyGreen,0.01,GMSAI_difficultyOrange,0.01]; // the value after each difficulty level indicates the relative chance it will be selected from the weighted array.
 GMSAI_ChanceStaticVillageGroups = 0.45;
 
 GMSAI_staticCityGroups = 2;
 GMSAI_staticCityUnitsPerGroup = [2,4];
-GMSAI_staticCityUnitsDifficulty = [GMSAI_difficultyRed,1];
-GMSAI_ChanceStaticCityGroups = 0.99999;
+GMSAI_staticCityUnitsDifficulty = [GMSAI_difficultyBlue,0.10,GMSAI_difficultyRed,1,GMSAI_difficultyGreen,0.01,GMSAI_difficultyOrange,0.01];
+GMSAI_ChanceStaticCityGroups = 0.50;
 
 GMSAI_staticCapitalGroups = [2,3];
 GMSAI_staticCapitalUnitsPerGroup = [2,4];
-GMSAI_staticCapitalUnitsDifficulty = [GMSAI_difficultyRed,0.50,GMSAI_difficultyGreen,0.50];
-GMSAI_ChanceCapitalGroups = 0.99999;
+GMSAI_staticCapitalUnitsDifficulty = [GMSAI_difficultyBlue,0.10,GMSAI_difficultyRed,0.50,GMSAI_difficultyGreen,0.50,GMSAI_difficultyOrange,0.01];
+GMSAI_ChanceCapitalGroups = 0.60;
 
 GMSAI_staticMarineGroups = [1];
 GMSAI_staticMarineUnitsPerGroup = [2,3];
-GMSAI_staticMarineUnitsDifficulty = [GMSAI_difficultyBlue,1];
+GMSAI_staticMarineUnitsDifficulty = [GMSAI_difficultyBlue,1,GMSAI_difficultyRed,0.50,GMSAI_difficultyGreen,0.01,GMSAI_difficultyOrange,0.01];
 GMSAI_ChanceStaticMarineUnits = 0.30;
 
 GMSAI_staticOtherGroups = [1,2];
 GMSAI_staticOtherUnitsPerGroup = [2,3];
-GMSAI_staticOtherUnitsDifficulty = [GMSAI_difficultyRed,0.50,GMSAI_difficultyGreen,0.50];
+GMSAI_staticOtherUnitsDifficulty = [GMSAI_difficultyBlue,0.10,GMSAI_difficultyRed,0.50,GMSAI_difficultyGreen,0.50,GMSAI_difficultyOrange,0.01];
 GMSAI_ChanceStaticOtherGroups = 0.45;
 
 GMSAI_staticRandomGroups = [1];
 GMSAI_staticRandomUnits = [3];
-GMSAI_staticRandomUnitsDifficulty = [GMSAI_difficultyBlue,0.75,GMSAI_difficultyRed,0.25];
-GMSAI_staticRandomChance = 0.50;
+GMSAI_staticRandomUnitsDifficulty = [GMSAI_difficultyBlue,0.75,GMSAI_difficultyRed,0.25,GMSAI_difficultyGreen,0.50,GMSAI_difficultyOrange,0.01];
+GMSAI_staticRandomChance = 0.40;
 
 
 /********************************************/

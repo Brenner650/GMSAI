@@ -1,4 +1,4 @@
-diag_log format["[GMSAI] running inactive area monitor at %1 with %2 inactive spawns",diag_tickTime, count GMSAI_StaticSpawns];
+//diag_log format["[GMSAI] running inactive area monitor at %1 with %2 inactive spawns",diag_tickTime, count GMSAI_StaticSpawns];
 #define respawnAt 4
 #define areaDescriptor 0
 #define areaGroups 3
@@ -67,7 +67,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 									_m setMarkerColor "COLORRED";
 									_m setMarkerPos _groupSpawnPos;
 									_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
-									_group setVariable["GMSAI_groupMarker",_m];
+									//_group setVariable["GMSAI_groupMarker",_m];
 								};
 								_spawnedGroups pushBack _group;
 								GMSAI_infantryGroups pushBack [_group,_m];

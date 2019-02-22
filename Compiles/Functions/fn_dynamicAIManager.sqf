@@ -110,7 +110,7 @@ if (GMSAI_useDynamicSpawns) then
 								{
 									_m = createMarker[format["GMSAI_dynamicMarker%1",random(1000000)],_spawnPos];
 									_player setVariable["GMSAI_groupMarker",_m];
-									_group setVariable["GMSAI_groupMarker",_m];
+									//_group setVariable["GMSAI_groupMarker",_m];
 									_m setMarkerType "mil_triangle";
 									_m setMarkerColor "COLORRED";
 									_m setMarkerPos _spawnPos;

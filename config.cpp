@@ -94,7 +94,6 @@ class CfgFunctions {
 			class monitorUAVPatrols {};				
 			class monitorActiveAreas {};
 			class monitorInactiveAreas {};			
-			class monitorInfantryPatrols {};
 			class monitorDeadUnits {};
 		};
 	};
