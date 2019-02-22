@@ -64,7 +64,7 @@ for "_i" from 1 to (count GMSAI_StaticSpawns) do
 									_m setMarkerColor "COLORRED";
 									_m setMarkerPos _groupSpawnPos;
 									_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
-									_group setVariable["groupMarker",_m];
+									_group setVariable["GMSAI_groupMarker",_m];
 								};
 								GMSAI_infantryGroups pushBack _group;
 							} forEach _spawns;

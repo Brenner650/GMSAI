@@ -98,25 +98,21 @@ GMSAI_useNVG = true;
 GMSAI_removeNVG = false;
 GMSAI_runoverProtection = true;
 GMSAI_bodyDeleteTimer = 600;
-//GMSAI_blacklistedAreasInfantry = GMSAI_blackListedAreas + [ [1,1,1],100];  //  add these as [position, radius]. Add trader locations or other areas to which you do not want AI moving.
 
-//GMSAI_StaticSpawnAtLocations = false;
-//GMSAI_StaticSpawnsGrid = true;  // does nothing at present
-GMSAI_useStaticSpawns = false;
-GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns.
-GMSAI_staticRespawnTime = 600;
-GMSAI_staticDespawnTime = 120;
-GMSAI_StaticSpawnsRandom = 15;  // Determines the number of random spans independent of cites, town, military areas, ports, airports and other:  default 25
-
-// 
-GMSAI_useDynamicSpawns = true;
-GMSAI_dynamicRespawns = 1;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns.
-GMSAI_dynamicRespawnTime = 10;
-GMSAI_dynamicDespawnTime = 10;
+GMSAI_useDynamicSpawns = false;
+GMSAI_dynamicRespawns = -1;  //  Set to 0 to spawn only once. Set to -1 to have infinite respawns.
+GMSAI_dynamicRespawnTime = 600;
+GMSAI_dynamicDespawnTime = 120;
 GMSAI_dynamicUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_dynamicRandomGroups = [1];
 GMSAI_dynamicRandomUnits = [3];
-GMSAI_dynamicRandomChance = 0.999;
+GMSAI_dynamicRandomChance = 0.20;
+
+GMSAI_useStaticSpawns = true;
+GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns.
+GMSAI_staticRespawnTime = 10;
+GMSAI_staticDespawnTime = 10;
+GMSAI_StaticSpawnsRandom = 5;  // Determines the number of random spans independent of cites, town, military areas, ports, airports and other:  default 25
 
 GMSAI_staticVillageGroups = 1;
 GMSAI_staticVillageUnitsPerGroup = [1,3];
@@ -127,12 +123,12 @@ GMSAI_ChanceStaticVillageGroups = 0.45;
 GMSAI_staticCityGroups = 2;
 GMSAI_staticCityUnitsPerGroup = [2,4];
 GMSAI_staticCityUnitsDifficulty = [GMSAI_difficultyRed,1];
-GMSAI_ChanceStaticCityGroups = 0.50;
+GMSAI_ChanceStaticCityGroups = 0.99999;
 
 GMSAI_staticCapitalGroups = [2,3];
 GMSAI_staticCapitalUnitsPerGroup = [2,4];
 GMSAI_staticCapitalUnitsDifficulty = [GMSAI_difficultyRed,0.50,GMSAI_difficultyGreen,0.50];
-GMSAI_ChanceCapitalGroups = 0.75;
+GMSAI_ChanceCapitalGroups = 0.99999;
 
 GMSAI_staticMarineGroups = [1];
 GMSAI_staticMarineUnitsPerGroup = [2,3];

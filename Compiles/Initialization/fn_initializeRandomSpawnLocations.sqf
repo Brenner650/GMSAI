@@ -1,5 +1,5 @@
 diag_log format["[GMSAI] _initializeRandomSpawnLocations: GMSAI_StaticSpawnsRandom = %1",GMSAI_StaticSpawnsRandom];
-if (GMSAI_StaticSpawnsRandom <= 0) exitWith {};
+if (GMSAI_StaticSpawnsRandom <= 0 || !(GMSAI_useStaticSpawns)) exitWith {};
 params[["_locations",[]]];
 private _blacklistedAreas = ["water"] + _locations;
 for "_i" from 1 to GMSAI_StaticSpawnsRandom do
