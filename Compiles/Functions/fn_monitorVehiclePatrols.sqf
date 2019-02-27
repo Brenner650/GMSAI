@@ -8,7 +8,7 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 	{
 		private _countUnits = {alive _x} count (units _crewGroup);
 		private _countCrew = {alive _x} count (crew _vehicle);
-		if ( ({alive _x} count (crew _vehicle) > 0) && (alive _vehicle)) then
+		if ( (_countCrew > 0) && (alive _vehicle)) then
 		{
 			diag_log format["_monitorVehiclePatrols: checking vehicle %1 with %2 alive crew located at %3 with speed of %4",_vehicle,{alive _x} count (crew _vehicle),getPos _vehicle,speed _vehicle];
 			if (diag_tickTime > (_crewGroup getVariable "timestamp") + 600) then
@@ -18,7 +18,23 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 			};
 			GMSAI_vehiclePatrols pushBack _vehiclePatrol;
 		} else {
-			if ({alive _x} count (units _crewGroup) > 0 && )
+			if (_countUnits > 0 && _countCrew == 0) then // All of the units have left the vehicle, setup some monitoring for the left-over group
+			{
+				private _m = "";
+				_crewGroup setVariable["deleteAt",diag_tickTime + 120];
+				if (GMSAI_debug > 1) then
+				{
+					_m = createMarker[format["GMSAI_dynamicMarker%1",random(1000000)],getPos (leader _crewGroup)];
+					//_crewGroup setVariable["GMSAI_groupMarker",_m];
+					//_group setVariable["GMSAI_groupMarker",_m];
+					_m setMarkerType "mil_triangle";
+					_m setMarkerColor "COLORRED";
+					_m setMarkerPos _spawnPos;
+					_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
+					//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
+				};				
+				GMSAI_infantryGroups pushBack [_crewGroup,_m];
+			};
 			diag_log format["_monitorVehiclePatrols: vehicle patrol killed, configuring it for respawn"];
 			//if (alive _vehicle) then {GMSAI_emptyVehicles pushBack [_vehicle,diag_tickTime + GMSAI_vehicleDeleteTimer]};
 			_vehiclePatrol set[4,diag_tickTime + ([GMSAI_vehiclePatrolRespawnTime] call GMS_fnc_getNumberFromRange)];
@@ -47,3 +63,11 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 	};
 	
 };
+
+/*
+	Cases to consider:
+	1. 1 or more crew alive and vehicle alive
+	2. no crew in vehicle and vehicle alive (should have already been processed but can double-check)
+		a. no units in group alive - do nothing
+		b. 1 or more units in group alive, add them to the list of monitored infantry groups, set a flag on the group = "residual"
+	3. _lastSpawned < 0: test for respawn conditions. 
