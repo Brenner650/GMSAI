@@ -1,1 +1,1 @@
-_this call GMSAI_fnc_processVehicleCrewHit;
+_this remoteExec ["GMSAI_fnc_processVehicleCrewHit",2];

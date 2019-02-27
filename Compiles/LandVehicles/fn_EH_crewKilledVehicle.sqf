@@ -1,2 +1,1 @@
-params["_unit","_killer"];
-[_unit,_killer] remoteExec ["GMSAI_fnc_processVehicleCrewKilled",2];
+_this remoteExec ["GMSAI_fnc_processVehicleCrewKilled",2];

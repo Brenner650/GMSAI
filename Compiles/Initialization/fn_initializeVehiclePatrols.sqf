@@ -12,6 +12,7 @@ for "_i" from 1 to GMSAI_noVehiclePatrols do
 	{
 		private _vehiclePatrol = [_pos] call GMSAI_fnc_spawnVehiclePatrol;
 		diag_log format["[GMSAI] _initializeVehiclePatrols: _vehiclePatrol = %1",_vehiclePatrol];
-		GMSAI_vehiclePatrols pushBack [_vehiclePatrol select 0,_vehiclePatrol select 1,diag_tickTime,0,-1,-1];
+		//  _vehiclePatrol params["_crewGroup","_vehicle","_lastSpawned","_timesSpawned","_respawnAt"];  //,"_spawned"];
+		GMSAI_vehiclePatrols pushBack [_vehiclePatrol select 0,_vehiclePatrol select 1,0,0,-1,-1];
 	};
 };

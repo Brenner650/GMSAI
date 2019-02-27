@@ -23,7 +23,7 @@ GMSAI_useKilledAIName = true; // when true, the name of the unit killed will be 
 	 Patrol Spawn Configs
 *********************************/
 GMSAI_releaseVehiclesToPlayers = 1;  // set to -1 to disable this feature.
-GMSAI_vehicleDeleteTimer = 600; // vehicles with no live crew will be deleted at this interval after all crew are killed.
+GMSAI_vehicleDeleteTimer = 10; // vehicles with no live crew will be deleted at this interval after all crew are killed.
 GMSAI_checkClassNames = true; // when true, class names listed in the configs will be checked against CfgVehicles, CfgWeapons, ets.
 GMSAI_useCfgPricingForLoadouts = true;
 GMSAI_maxPricePerItem = 1000;
@@ -77,11 +77,11 @@ GMSAI_paratroopAircraftTypes = [  // Note: this is a weighted array of vehicles 
 		"B_Heli_Transport_03_unarmed_F",5
 ];
 
-GMSAI_noVehiclePatrols = 0;
-GMSAI_patroVehicleCrewCount = [3,5];
+GMSAI_noVehiclePatrols = 3;
+GMSAI_patroVehicleCrewCount = [4];
 GMSAI_vehiclePatroDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
-GMSAI_vehiclePatrolDeleteTime = 600;
-GMSAI_vehiclePatrolRespawnTime = 600;
+GMSAI_vehiclePatrolDeleteTime = 10;
+GMSAI_vehiclePatrolRespawnTime = 10;
 GMSAI_vehiclePatrolRespawns = -1;
 GMSAI_blackListedAreasVehicles = []; //  List location names or coordinates/radius to which vehicles should not be sent. They may still pass through but will not patrol there.
 GMSAI_patrolVehicles = [  // Weighted array of vehicles spawned to patrol roads and cities.
@@ -207,6 +207,9 @@ if (toLower(GMS_modType) isEqualTo "epoch") then {call compileFinal preprocessFi
 if (toLower(GMS_modType) isEqualTo "exile") then {call compileFinal preprocessFileLineNumbers "addons\GMSAI\Configs\GMSAI_unitLoadoutExile.sqf"};
 
 /*
+*** I kept this bit in for reference regarding the data structure for storing gear setups ***
+*** See the mod-specific files for further information  ***
+
 if (GMSAI_useConfigsBasedGearConfiguration) then
 {
 	// pull data from the CfgPricing or CfgArsenal configs - 
