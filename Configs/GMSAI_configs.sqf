@@ -77,7 +77,7 @@ GMSAI_paratroopAircraftTypes = [  // Note: this is a weighted array of vehicles 
 		"B_Heli_Transport_03_unarmed_F",5
 ];
 
-GMSAI_noVehiclePatrols = 1;
+GMSAI_noVehiclePatrols = 5;
 GMSAI_patroVehicleCrewCount = [4];
 GMSAI_vehiclePatroDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
 GMSAI_vehiclePatrolDeleteTime = 10;
@@ -85,7 +85,27 @@ GMSAI_vehiclePatrolRespawnTime = 10;
 GMSAI_vehiclePatrolRespawns = -1;
 GMSAI_blackListedAreasVehicles = []; //  List location names or coordinates/radius to which vehicles should not be sent. They may still pass through but will not patrol there.
 GMSAI_patrolVehicles = [  // Weighted array of vehicles spawned to patrol roads and cities.
-	"C_Offroad_01_F",1
+	"B_G_Offroad_01_armed_EPOCH",2,
+	"B_LSV_01_armed_F",1,
+	"I_C_Offroad_02_LMG_F",2,
+	"B_T_LSV_01_armed_black_F",1,
+	"B_T_LSV_01_armed_olive_F",1,
+	"B_T_LSV_01_armed_sand_F",1,
+	"B_MRAP_01_EPOCH",5,
+	"C_Van_01_box_EPOCH",5,
+	"C_Van_01_transport_EPOCH",5,
+	"C_Offroad_01_EPOCH",5,
+	"C_Hatchback_02_EPOCH",5,
+	"C_Hatchback_01_EPOCH",5,
+	"C_SUV_01_EPOCH",5,
+	"B_Truck_01_transport_EPOCH",5,
+	"B_Truck_01_covered_EPOCH",5,
+	"B_Truck_01_mover_EPOCH",5,
+	"B_Truck_01_box_EPOCH",5,
+	"O_Truck_02_covered_EPOCH",5,
+	"O_Truck_02_transport_EPOCH",5,
+	"O_Truck_03_covered_EPOCH",5,
+	"O_Truck_02_box_EPOCH",5	
 ];
 
 GMSAI_blacklistedTurrets = [];
