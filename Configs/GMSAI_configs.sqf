@@ -77,7 +77,7 @@ GMSAI_paratroopAircraftTypes = [  // Note: this is a weighted array of vehicles 
 		"B_Heli_Transport_03_unarmed_F",5
 ];
 
-GMSAI_noVehiclePatrols = 3;
+GMSAI_noVehiclePatrols = 1;
 GMSAI_patroVehicleCrewCount = [4];
 GMSAI_vehiclePatroDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
 GMSAI_vehiclePatrolDeleteTime = 10;
@@ -106,7 +106,7 @@ GMSAI_dynamicDespawnTime = 10;
 GMSAI_dynamicUnitsDifficulty = [GMSAI_difficultyBlue,0.90,GMSAI_difficultyRed,0.10];
 GMSAI_dynamicRandomGroups = [1];
 GMSAI_dynamicRandomUnits = [3];
-GMSAI_dynamicRandomChance = 0.20;
+GMSAI_dynamicRandomChance = 0.999;
 
 GMSAI_useStaticSpawns = true;
 GMSAI_staticRespawns = -1;  //  Set to -1 to have infinite respawns (default). If set == 0 then there will be no spawns in towns/cities.

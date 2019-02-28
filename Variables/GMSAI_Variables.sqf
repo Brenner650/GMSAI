@@ -22,5 +22,5 @@ GMSAI_deadAI = [];
 GMSAI_emptyVehicles = [];
 GMSAI_unitType = "I_G_Sharpshooter_F";
 GMSAI_infantry = 1;
-GMSAI_debug = 2;
+GMSAI_debug = 0;
 //diag_log "[GMSAI] Variables loaded";

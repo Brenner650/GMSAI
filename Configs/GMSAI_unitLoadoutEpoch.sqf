@@ -89,7 +89,7 @@ _nvg =  ["NVG_EPOCH"];
 	#define chanceThrowable 0.4
 	#define chanceBinoc 0.5
 	#define chanceMedical 0.5
-	#define chanceHeadgear 0.5
+	#define chanceHeadgear 0.999
 	#define chanceBinoc 0.5
 	#define chanceGPS 0.2
 	#define chanceUniform 1
@@ -204,6 +204,7 @@ if (GMSAI_useCfgPricingForLoadouts) then
 		[_gearBlue select NvgItems, 1],  // this is determined elsewhere for GMSAI
 		[_gearBlue select BinocularItems,chanceBinoc],
 		[_gearBlue select foodAndDrinks, chanceFood],
+		[_gearBlue select MedicalItems, chanceMedical],
 		[_gearBlue select lootItems, chanceLoot]
 	];
 
@@ -216,29 +217,26 @@ if (GMSAI_useCfgPricingForLoadouts) then
 	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearOrange select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearOrange;	
 	diag_log "[GMSAI] CfgPricing-based loadouts used";
 } else {
-	{
-		_x = [_x] call GMS_fnc_checkClassnames
-	} forEach [_primary,_handguns,_throwableExplosives,_headgear,_uniforms,_vests,_backpacks,_launchers,_nvg,_binoculars,_food,_meds,_partsAndValuables];
-	
 	GMSAI_gearBlue = [
-		[_primary,chancePrimary,chancePrimaryOptic,chancePrimaryMuzzle,chancePrimaryPointer,chancePrimaryUnderbarrel],  //[]  primary weapons
-		[_handguns, chanceSecondary, chanceSecondaryOptic, chanceSecondaryMuzzle, chanceSeconaryPointer], 				// [] secondary weapons
-		[_throwableExplosives,chanceThrowable],																			 // [] throwables
-		[_headgear, chanceHeadgear],																					//[] headgear
-		[_uniforms, chanceUniform],																						// [] uniformItems
-		[_vests, chanceVest],																							//[] vests
-		[_backpacks, chanceBackpack],																					//[] backpacks
-		[_launchers, 1],	
-		[_nvg,1],																										//  launchers
-		[_binoculars,chanceBinoc],
-		[_food,chanceFood],
-		[_meds,chanceMedical],
-		[_partsAndValuables,chanceLoot]
+		[[_primary] call GMS_fnc_checkClassnames,chancePrimary,chancePrimaryOptic,chancePrimaryMuzzle,chancePrimaryPointer,chancePrimaryUnderbarrel],  //[]  primary weapons
+		[[_handguns] call GMS_fnc_checkClassnames, chanceSecondary, chanceSecondaryOptic, chanceSecondaryMuzzle, chanceSeconaryPointer], 				// [] secondary weapons
+		[[_throwableExplosives] call GMS_fnc_checkClassnames,chanceThrowable],																			 // [] throwables
+		[[_headgear] call GMS_fnc_checkClassnames, chanceHeadgear],																					//[] headgear
+		[[_uniforms] call GMS_fnc_checkClassnames, chanceUniform],																						// [] uniformItems
+		[[_vests] call GMS_fnc_checkClassnames, chanceVest],																							//[] vests
+		[[_backpacks] call GMS_fnc_checkClassnames, chanceBackpack],																					//[] backpacks
+		[[_launchers] call GMS_fnc_checkClassnames, 1],	
+		[[_nvg] call GMS_fnc_checkClassnames,1],																										//  launchers
+		[[_binoculars] call GMS_fnc_checkClassnames,chanceBinoc],
+		[[_food] call GMS_fnc_checkClassnames,chanceFood],
+		[[_meds] call GMS_fnc_checkClassnames,chanceMedical],
+		[[_partsAndValuables] call GMS_fnc_checkClassnames,chanceLoot]
 	];
+	
 	GMSAI_gearRed = GMSAI_gearBlue;
 	GMSAI_gearGreen = GMSAI_gearBlue;
 	GMSAI_gearOrange = GMSAI_gearBlue;	
-	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearBlue select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearBlue;
+	{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearBlue select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearBlue;
 	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearRed select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearRed;
 	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearGreen select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearGreen;		
 	//{diag_log format["[GMSAI] _unitLoadoutEpoch: GMSAI_gearOrange select %1 = %2",_forEachIndex,_x]} forEach GMSAI_gearOrange;	

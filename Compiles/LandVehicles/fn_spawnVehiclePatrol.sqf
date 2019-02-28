@@ -10,8 +10,8 @@ diag_log format["[GMSAI] _fnc_spawnVehiclePatrol: _vehicle = %1 | _crewCount = %
 [_group, GMSAI_unitLoadouts select _difficulty, 0 /* launchers per group */, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
 [_group,_difficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 [_group] call GMS_fnc_setupGroupBehavior;
-private _crew = units _group;
-[_vehicle,_crew] call GMS_fnc_loadVehicleCrew;
+//private _crew = units _group;
+[_vehicle,units _group] call GMS_fnc_loadVehicleCrew;
 _vehicle addMPEventHandler["MPHit",{_this call GMSAI_fnc_EH_vehicleHit}];
 {
 	_x addMPEventHandler ["MPKilled", {_this call GMSAI_fnc_EH_crewKilledVehicle;}];
