@@ -29,8 +29,9 @@ for "_i" from 1 to (count GMSAI_activeStaticSpawns) do
 			{
 				//diag_log format["[GMSAI] static area % deactivated at %2",_area,diag_tickTime];
 				// Do something here to clean up any remaining groups and include a timestamp check.
+				//  ?? not needed ?  Groups are added to // so they are already monitored; just need to manage spawning of new groups in the area here. Must be sure spawn/respawn delay > despawn time to avoid multiple groups being spawned for an area
 				{
-					[_x] call GMS_fnc_despawnInfantryGroup;
+					//[_x] call GMS_fnc_despawnInfantryGroup;
 				}forEach _aliveGroups;
 				private _oldArea = +_area;
 				_area set[4,diag_tickTime];

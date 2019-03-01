@@ -1,6 +1,7 @@
 diag_log format["[GMSAI] _fnc_spawnMissionHeli: _this = %1",_this];
 params["_pos"];
 private _heli = createVehicle [selectRandomWeighted GMSAI_aircraftTypes, _pos, [], 0, "FLY"];
+if (GMS_modType isEqualTo "Epoch") then {_heli call EPOCH_server_setVToken};
 _heli setFuel 1;
 _heli engineOn true;
 _heli flyInHeight 100;

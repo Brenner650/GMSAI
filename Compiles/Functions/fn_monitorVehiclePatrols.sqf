@@ -10,7 +10,7 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 		private _countCrew = {alive _x} count (crew _vehicle);
 		if ( (_countCrew > 0) && (alive _vehicle)) then
 		{
-			diag_log format["_monitorVehiclePatrols: checking vehicle %1 with %2 alive crew located at %3 with speed of %4",_vehicle,{alive _x} count (crew _vehicle),getPos _vehicle,speed _vehicle];
+			//diag_log format["_monitorVehiclePatrols: checking vehicle %1 with %2 alive crew located at %3 with speed of %4",_vehicle,{alive _x} count (crew _vehicle),getPos _vehicle,speed _vehicle];
 			if (diag_tickTime > (_crewGroup getVariable "timestamp") + 600) then
 			{
 				diag_log format["_monitorVehiclePatrols: vehicle %1 delayed in arriving at WP, re-directing it",_vehicle];
@@ -18,30 +18,47 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 			};
 			GMSAI_vehiclePatrols pushBack _vehiclePatrol;
 		} else {
+			//diag_log format["_monitorVehiclePatrols: vehicle patrol killed or disabled, configuring it for respawn"];
 			if (_countUnits > 0 && _countCrew == 0) then // All of the units have left the vehicle, setup some monitoring for the left-over group
 			{
+				//diag_log format["_monitorVehiclePatrols: Some crew alive, setting them up to patrol the area idependently"];
+				private _patrolArea = createMarkerLocal[format["GMSAI_remnant%1",_crewGroup],getPos _vehicle];
+				private _nearPlayers = nearestObjects[position (leader _crewGroup),["Man"],150] select {isPlayer _x};
+				//diag_log format["_monitorVehiclePatrols: _nearPlayers = %1",_nearPlayers];
+				{
+					_crewGroup reveal[_x,1];
+				}forEach _nearPlayers;
+				_patrolArea setMarkerShapeLocal "RECTANGLE";
+				_patrolArea setMarkerSizeLocal [150,150];
+				_crewGroup setVariable["GMSAI_patrolArea",_patrolArea];
+				_crewGroup setVariable["GMSAI_deleteAt",diag_tickTime + 120];
 				private _m = "";
-				_crewGroup setVariable["deleteAt",diag_tickTime + 120];
-				if (GMSAI_debug > 1) then
+				if (GMSAI_debug >= 1) then
 				{
 					_m = createMarker[format["GMSAI_dynamicMarker%1",random(1000000)],getPos (leader _crewGroup)];
-					//_crewGroup setVariable["GMSAI_groupMarker",_m];
-					//_group setVariable["GMSAI_groupMarker",_m];
 					_m setMarkerType "mil_triangle";
-					_m setMarkerColor "COLORRED";
-					_m setMarkerPos _spawnPos;
-					_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
+					_m setMarkerColor "COLORYELLOW";
+					_m setMarkerText format["%1:%2",_crewGroup,{alive _x} count units _crewGroup];
+					_m setMarkerPos getPos(leader _crewGroup);
 					//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];
 				};				
 				GMSAI_infantryGroups pushBack [_crewGroup,_m];
+				//diag_log format["_monitorVehiclePatrols: _crewGroup %1 added to GMSAI_infantryGroups",_crewGroup];
 			};
-			diag_log format["_monitorVehiclePatrols: vehicle patrol killed, configuring it for respawn"];
-			//if (alive _vehicle) then {GMSAI_emptyVehicles pushBack [_vehicle,diag_tickTime + GMSAI_vehicleDeleteTimer]};
+			if (alive _vehicle && _countCrew == 0) then 
+			{
+				if !(_vehicle in GMSAI_emptyVehicles) then
+				{
+					//diag_log format["_monitorVehiclePatrols: vehicle %1 still 'alive', so processing it as an empty vehicle",_vehicle];
+					[_vehicle] call GMSAI_fnc_processEmptyVehicle;
+				};
+			};
 			_vehiclePatrol set[4,diag_tickTime + ([GMSAI_vehiclePatrolRespawnTime] call GMS_fnc_getNumberFromRange)];
 			_vehiclePatrol set[2,-1];
 			GMSAI_vehiclePatrols pushBack _vehiclePatrol;			
 		};
 	} else {  // 
+		//diag_log format["_monitorVehiclePatrols: _timesSpawned = %1 | _respawnAt = %2 | time = %3",_timesSpawned,_respawnAt,diag_tickTime];
 		if (GMSAI_vehiclePatrolRespawns == -1 || _timesSpawned <= GMSAI_vehiclePatrolRespawns) then
 		{
 			if (_respawnAt > -1 && diag_tickTime > _respawnAt) then
@@ -50,7 +67,7 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 				while {_pos isEqualTo [0,0]} do
 				{
 					_pos = [nil,["water"]] call BIS_fnc_randomPos;
-					diag_log format["[GMSAI] _initializeVehiclePatrols: _pos = %1",_pos];
+					//diag_log format["[GMSAI] _initializeVehiclePatrols: _pos = %1",_pos];
 				};
 				private _newPatrol = [_pos] call GMSAI_fnc_spawnVehiclePatrol;
 				_vehiclePatrol set[0,_newPatrol select 0];

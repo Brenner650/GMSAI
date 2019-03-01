@@ -3,6 +3,7 @@
 diag_log format["[GMSAI] _fnc_spawnUAVPatrol: _this = %1",_this];
 params["_pos"];
 private _uav = createVehicle [selectRandomWeighted GMSAI_UAVTypes, _pos, [], 0, "FLY"];
+if (GMS_modType isEqualTo "Epoch") then {_uav call EPOCH_server_setVToken};
 diag_log format["[GMSAI] _fnc_spawnUAVPatrol: UAV selected = %1",_uav];
 _uav setFuel 1;
 _uav engineOn true;

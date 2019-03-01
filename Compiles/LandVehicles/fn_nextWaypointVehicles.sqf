@@ -32,7 +32,7 @@ if !(isNull _nearestEnemy) then
 	_group setCurrentWaypoint _wp;
 	//diag_log format["GMSAI_fnc_nextWaypointVehicle: waypoint for group %1 updated to SAD waypoint at %2",_group,_nextPos];
 } else {
-	private _nearLocations = nearestLocations [position _driver, ["NameCity","NameCityCapital","NameMarine","NameVillage","NameLocal","Airport"],3000];
+	private _nearLocations = nearestLocations [position _driver, GMSAI_vehiclePatrolDestinations,3000];
 	private _pos = position _veh;
 	_loc = selectRandom _nearLocations;
 	private _lastWaypointPos = waypointPosition [_group,0];

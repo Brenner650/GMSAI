@@ -89,18 +89,16 @@ if (GMSAI_useDynamicSpawns) then
 								[_group, GMSAI_unitLoadouts select _unitDifficulty, GMSAI_LaunchersPerGroup, GMSAI_useNVG, GMSAI_blacklistedGear] call GMS_fnc_setupGroupGear;
 								[_group,_unitDifficulty,GMSAI_money] call GMS_fnc_setupGroupMoney;
 								[_group] call GMS_fnc_setupGroupBehavior;	
-								_group setVariable["GMSAI_groupParameters",GMSAI_dynamicSettings];
-								_group setVariable["GMSAI_despawnDistance",GMSAI_dynamicDespawnDistance];
-								_group setVariable["GMSAI_DespawnTime",GMSAI_dynamicDespawnTime];
-								
-								//_group setVariable["GMSAI_respawnTime",GMSAI_dynamicRespawnTime];
-								private _m = createMarker[format["DynamicInfantryGroup%1",_group],_spawnPos];
-								_m setMarkerShapeLocal "RECTANGLE";
-								_m setMarkerSizeLocal [150,150];
-								_group setVariable["GMSAI_patrolArea",_m];
-								_group setVariable["GMSAI_waypointSpeed","NORMAL"];
-								_group setVariable["GMSAI_waypointLoiterRadius",30];	
-								_group setVariable["GMSAI_blacklistedAreas",["water"]];											
+								//_group setVariable["GMSAI_groupParameters",GMSAI_dynamicSettings];
+								//_group setVariable["GMSAI_despawnDistance",GMSAI_dynamicDespawnDistance];
+								//_group setVariable["GMSAI_DespawnTime",GMSAI_dynamicDespawnTime];
+								private _patrolArea = createMarker["GMSAI_dynamic%1",_group];
+								_patrolArea setMarkerShape "RECTANGLE";
+								_patrolArea setMarkerSize [150,150];
+								_group setVariable["GMSAI_patrolArea",_patrolArea];
+								//_group setVariable["GMSAI_waypointSpeed","NORMAL"];
+								//_group setVariable["GMSAI_waypointLoiterRadius",30];	
+								//_group setVariable["GMSAI_blacklistedAreas",["water"]];											
 								_group reveal[_player,1];
 								diag_log format["[GMSAI] _dynamicAIManger: _group = %1",_group];
 								_group call GMSAI_fnc_initializeWaypointInfantry;
@@ -112,7 +110,7 @@ if (GMSAI_useDynamicSpawns) then
 									_player setVariable["GMSAI_groupMarker",_m];
 									//_group setVariable["GMSAI_groupMarker",_m];
 									_m setMarkerType "mil_triangle";
-									_m setMarkerColor "COLORRED";
+									_m setMarkerColor "COLORORANGE";
 									_m setMarkerPos _spawnPos;
 									_m setMarkerText format["%1:%2",_group,{alive _x} count units _group];
 									//diag_log format["[GMSAI] infantry group debug marker %1 created at %2",_m,markerPos _m];

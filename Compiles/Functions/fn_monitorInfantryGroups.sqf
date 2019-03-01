@@ -29,14 +29,15 @@ for "_i" from 1 to (count GMSAI_infantryGroups) do
             {
                 _marker setMarkerPos getPos (leader _group);
             };
-            if (_group getVariable["deleteAt",0] > 0) then  //  provides mechanism to handle groups left over from vehicle patrols, separate from dynamic or area-based patrols
+            if (_group getVariable["GMSAI_deleteAt",0] > 0) then  //  provides mechanism to handle groups left over from vehicle patrols, separate from dynamic or area-based patrols
             {
                 private _nearbyPlayers = allPlayers select { (leader _group) distance _x < 300};
-                if ((_nearbyPlayers isEqualTo []) && diag_tickTime > _group getVariable "deleteAt") then
+                if ((_nearbyPlayers isEqualTo []) && diag_tickTime > _group getVariable "GMSAI_deleteAt") then
                 {
                     [_g] call GMS_fnc_despawnInfantryGroup;
+                    deleteMarker _marker;                    
                 } else {
-                    _group setVariable["deleteAt",diag_tickTime + 120];  // wait until no player is within 300 m for 120 seconds before doing deletion.
+                    _group setVariable["GMSAI_deleteAt",diag_tickTime + (_group getVariable["GMSAI_DespawnTime",120])];  // wait until no player is within 300 m for 120 seconds before doing deletion.
                 };
             };
             GMSAI_infantryGroups pushBack _g;
