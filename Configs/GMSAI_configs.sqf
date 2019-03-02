@@ -46,15 +46,15 @@ GMSAI_aircraftGunners = 3;
 GMSAI_airpatrolResapwns = -1;
 // treat aircraft types as weighted arrayIntersect
 GMSAI_aircraftTypes = [
-		"B_Heli_Transport_01_F",5,
-		"B_Heli_Light_01_F",1,
-		"I_Heli_light_03_unarmed_F",5,
-		"B_Heli_Transport_03_unarmed_green_F",5,
-		"I_Heli_light_03_F",1,
-		"I_Plane_Fighter_03_AA_F",1,
-		"O_Heli_Light_02_F",2,
-		"B_Heli_Attack_01_F",2,
-		"B_Heli_Transport_03_unarmed_F",5
+	"B_Heli_Transport_01_F",5,
+	"B_Heli_Light_01_F",1,
+	"I_Heli_light_03_unarmed_F",5,
+	"B_Heli_Transport_03_unarmed_green_F",5,
+	"I_Heli_light_03_F",1,
+	"I_Plane_Fighter_03_AA_F",1,
+	"O_Heli_Light_02_F",2,
+	"B_Heli_Attack_01_F",2,
+	"B_Heli_Transport_03_unarmed_F",5
 ];
 
 GMSAI_numberOfUAVPatrols = 0;
@@ -68,14 +68,22 @@ GMSAI_numberParatroops = [2,4]; // can be a single value (1, [1]) or a range
 GMSAI_paratroopDifficulty = [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
 GMSAI_paratroopRespawnTimer = 900;
 GMSAI_paratroopAircraftTypes = [  // Note: this is a weighted array of vehicles used to carry paratroops in to locations spotted by UAVs or UGVs
-		"B_Heli_Transport_01_F",5,
-		"B_Heli_Light_01_F",1,
-		"I_Heli_light_03_unarmed_F",5,
-		"B_Heli_Transport_03_unarmed_green_F",5,
-		"I_Heli_light_03_F",1,
-		"O_Heli_Light_02_F",2,
-		"B_Heli_Transport_03_unarmed_F",5
+	"B_Heli_Transport_01_F",5,
+	"B_Heli_Light_01_F",1,
+	"I_Heli_light_03_unarmed_F",5,
+	"B_Heli_Transport_03_unarmed_green_F",5,
+	"I_Heli_light_03_F",1,
+	"O_Heli_Light_02_F",2,
+	"B_Heli_Transport_03_unarmed_F",5
 ];
+
+GMSAI_numberOfUGVPatrols = 5;
+GMSAI_UGVtypes = [
+	"I_UGV_01_rcws_F",5
+];
+GMSAI_UGVdifficulty =  [GMSAI_difficultyBlue,0.40,GMSAI_difficultyRed,0.40,GMSAI_difficultyGreen,0.15,GMSAI_difficultyOrange,0.05];
+GMSAI_UGVrespawnTime = 900;
+GMSAI_UGVchanceOfParatroops = 0.9999;
 
 GMSAI_noVehiclePatrols = 5;
 GMSAI_patroVehicleCrewCount = [4];
@@ -112,7 +120,7 @@ GMSAI_vehiclePatrolDestinations =[
 	"NameCityCapital",
 	//"NameMarine",  // ports and harbors
 	//"NameVillage",  // Not recommended if you have larger vehicles
-	//"NameLocal",  //  Includes military bases; Not recommended if you have larger vehicles
+	"NameLocal",  //  Includes military bases; Not recommended if you have larger vehicles
 	"Airport"  // self-evident
 ];
 GMSAI_blacklistedTurrets = [];

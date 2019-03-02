@@ -73,6 +73,7 @@ class CfgFunctions {
 			class processEmptyVehicle {};						
 			class processVehicleHit {};
 			class spawnVehiclePatrol {};	
+			class spawnUGVPatrol {};
 		};
 		class Initialization {
 			file = "addons\GMSAI\Compiles\Initialization";

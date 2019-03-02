@@ -13,7 +13,7 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 			//diag_log format["_monitorVehiclePatrols: checking vehicle %1 with %2 alive crew located at %3 with speed of %4",_vehicle,{alive _x} count (crew _vehicle),getPos _vehicle,speed _vehicle];
 			if (diag_tickTime > (_crewGroup getVariable "timestamp") + 600) then
 			{
-				diag_log format["_monitorVehiclePatrols: vehicle %1 delayed in arriving at WP, re-directing it",_vehicle];
+				//diag_log format["_monitorVehiclePatrols: vehicle %1 delayed in arriving at WP, re-directing it",_vehicle];
 				(leader _crewGroup) call GMSAI_fnc_nextWaypointVehicle;
 			};
 			GMSAI_vehiclePatrols pushBack _vehiclePatrol;
@@ -31,7 +31,8 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 				_patrolArea setMarkerShapeLocal "RECTANGLE";
 				_patrolArea setMarkerSizeLocal [150,150];
 				_crewGroup setVariable["GMSAI_patrolArea",_patrolArea];
-				_crewGroup setVariable["GMSAI_deleteAt",diag_tickTime + 120];
+				_crewGroup setVariable["GMSAI_DespawnTime",10];
+				_crewGroup setVariable["GMSAI_deleteAt",diag_tickTime + 10];
 				private _m = "";
 				if (GMSAI_debug >= 1) then
 				{

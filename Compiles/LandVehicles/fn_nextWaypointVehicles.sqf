@@ -1,5 +1,5 @@
 private _driver = _this;
-diag_log format["_nextWaypointVehicles: _driver = %1",_driver];
+//diag_log format["_nextWaypointVehicles: _driver = %1",_driver];
 private _group = group _driver;
 private _veh = vehicle _driver;
 

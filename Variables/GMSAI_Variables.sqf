@@ -17,6 +17,7 @@ GMSAI_groupDebugMarkers = [];
 GMSAI_infantryGroups = [];
 GMSAI_airPatrols = [];
 GMSAI_UAVPatrols = [];
+GMSAI_UGVPatrols = [];
 GMSAI_vehiclePatrols = [];
 GMSAI_deadAI = [];
 GMSAI_emptyVehicles = [];
