@@ -11,7 +11,8 @@ if (isNull _target) then
 if !(isNull _target) then
 {
 	diag_log format["_nextWaypointInfantry : enemies nearby condition : _groupPatrolArea = %1",_groupPatrolArea];
-	private _nextPos = position _target getPos[(_leader distance _target)/2 ,(_nextPos getRelDir _target) + (random(45) * selectRandom[-1,1])];
+	//private _nextPos = position _target getPos[(_leader distance _target)/2 ,(_nextPos getRelDir _target) + (random(45) * selectRandom[-1,1])];
+	private _nextPos = (position _target) getPos[_leader distance _target,_leader getRelDir (position _target)];
 	diag_log format["_nextWaypoint: enemies detected, configuring SAD waypoint at _nextPos = %1",_nextPos];	
 	_group setVariable["timeStamp",diag_tickTime];	
 	private _wp = [_group,0];
