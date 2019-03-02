@@ -26,8 +26,9 @@ for "_i" from 1 to (count GMSAI_vehiclePatrols) do
 				private _nearPlayers = nearestObjects[position (leader _crewGroup),["Man"],150] select {isPlayer _x};
 				//diag_log format["_monitorVehiclePatrols: _nearPlayers = %1",_nearPlayers];
 				{
-					_crewGroup reveal[_x,1];
+					_crewGroup reveal[_x,4];
 				}forEach _nearPlayers;
+				_crewGroup setVariable["GMSAI_target",_nearPlayers select 0];
 				_patrolArea setMarkerShapeLocal "RECTANGLE";
 				_patrolArea setMarkerSizeLocal [150,150];
 				_crewGroup setVariable["GMSAI_patrolArea",_patrolArea];

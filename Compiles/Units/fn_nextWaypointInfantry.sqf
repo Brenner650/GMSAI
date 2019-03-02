@@ -3,11 +3,15 @@ private _group = group _leader;
 private _nearestEnemy =  _leader findNearestEnemy (position (_leader));
 diag_log format["_nextWaypoint: _leader = %1 | _group = %2 | _nearestEnemy = %3",_leader,_group,_nearestEnemy];
 private _blacklisted = _group getVariable "GMSAI_blackListedAreas";
-if !(isNull _nearestEnemy) then
+private _target = _group getVariable["GMSAI_target",objNull];
+if (isNull _target) then
+{
+	_target =  _group findNearestEnemy (position (_leader));
+};
+if !(isNull _target) then
 {
 	diag_log format["_nextWaypointInfantry : enemies nearby condition : _groupPatrolArea = %1",_groupPatrolArea];
-	//private _nextPos = [[position _nearestEnemy,100,100],1] call GMS_fnc_findRandomPosWithinArea select 0;	
-	private _nextPos = position _nearestEnemy getPos[(_leader distance _nearestEnemy)/2 ,(_nextPos getRelDir _nearestEnemy) + (random(45) * selectRandom[-1,1])];
+	private _nextPos = position _target getPos[(_leader distance _target)/2 ,(_nextPos getRelDir _target) + (random(45) * selectRandom[-1,1])];
 	diag_log format["_nextWaypoint: enemies detected, configuring SAD waypoint at _nextPos = %1",_nextPos];	
 	_group setVariable["timeStamp",diag_tickTime];	
 	private _wp = [_group,0];
